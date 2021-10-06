@@ -1,21 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from "react";
 
-export default function App() {
+//import { Theme } from "./src/themes/Themes.js";
+import LoginScreen from "./src/screens/LoginScreen";
+import MainScreen from "./src/screens/MainScreen";
+import RegisterScreen from "./src/screens/RegisterScreen";
+import ForgotScreen from "./src/screens/ForgotPasswordScreen"
+
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+      <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ title: "Login" }}
+        />
+         <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
+          options={{ title: "Rejestracja" }}
+        />
+        <Stack.Screen
+          name="Forgot"
+          component={ForgotScreen}
+          options={{ title: "Przypomij" }}
+        />
+        <Stack.Screen
+          name="Main"
+          component={MainScreen}
+          options={{ title: "Ekran główny" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
+export default App;
