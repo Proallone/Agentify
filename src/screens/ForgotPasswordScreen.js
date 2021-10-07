@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import colors from "../assets/colors/Colors";
+import { colors } from "../assets/colors/Index";
 
 export default class Forgot extends React.Component {
   state = {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     fontWeight: "bold",
-    fontSize: 50,
+    fontSize: 40,
     color: colors.secondary,
     marginBottom: 40,
   },
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   inputText: {
-    height: 60,
+    height: 30,
     color: colors.white,
   },
   forgot: {
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
   },
   forgotBtn: {
-    width: 120,
+    width: "40%",
     backgroundColor: colors.secondary,
     borderRadius: 25,
     height: 50,

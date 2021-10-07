@@ -4,22 +4,28 @@
 import { StyleSheet } from "react-native";
 import colors from "../assets/colors/Colors";
 
-export default StyleSheet.create({
+const style = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primaryBackground,
     alignItems: "center",
     justifyContent: "center",
+  },
+  logoContainer: {
+    alignContent: "center",
+    justifyContent: 'center',
+    flexDirection: "row",
+    padding: 10,
+    margin: 10,
   },
   logo: {
     fontWeight: "bold",
     fontSize: 50,
-    color: colors.secondary,
-    marginBottom: 40,
+    color: colors.primaryBlue,
   },
   inputView: {
     width: "80%",
-    backgroundColor: colors.secondary,
+    backgroundColor: colors.primaryBlue,
     borderRadius: 25,
     height: 70,
     marginBottom: 20,
@@ -36,7 +42,7 @@ export default StyleSheet.create({
   },
   bigBtn: {
     width: "80%",
-    backgroundColor: colors.secondary,
+    backgroundColor: colors.primaryBlue,
     borderRadius: 25,
     height: 50,
     alignItems: "center",
@@ -46,7 +52,7 @@ export default StyleSheet.create({
   },
   smallBtn: {
     width: 120,
-    backgroundColor: colors.secondary,
+    backgroundColor: colors.primaryBlue,
     borderRadius: 25,
     height: 50,
     alignItems: "center",
@@ -56,7 +62,7 @@ export default StyleSheet.create({
   },
   loginBtn: {
     width: "80%",
-    backgroundColor: colors.secondary,
+    backgroundColor: colors.primaryBlue,
     borderRadius: 25,
     height: 50,
     alignItems: "center",
@@ -72,4 +78,12 @@ export default StyleSheet.create({
     color: colors.black,
     fontWeight: "bold",
   },
+  tinyLogo: {
+    marginLeft: 5,
+    width: 50,
+    height: 50,
+    alignContent: "center",
+    justifyContent: "center",
+  },
 });
+export default style;

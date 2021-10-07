@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import s from "../styles/style"
+import s from "../styles/Style"
 import colors from "../assets/colors/Colors";
 
 

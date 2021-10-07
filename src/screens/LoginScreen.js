@@ -6,9 +6,10 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Image,
 } from "react-native";
 
-import s from "../styles/style"
+import { style } from "../styles/Index";
 import colors from "../assets/colors/Colors";
 
 export default class Login extends React.Component {
@@ -19,33 +20,39 @@ export default class Login extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={s.container}>
-        <Text style={s.logo}>Witaj!</Text>
-        <View style={s.inputView}>
+      <View style={style.container}>
+        <View style={style.logoContainer}>
+        <Text style={style.logo}>Witaj!</Text>
+        <Image
+              style={style.tinyLogo}
+              source={require("../assets/images/icon_main.png")}
+        />
+        </View>
+        <View style={style.inputView}>
           <TextInput
-            style={s.inputText}
+            style={style.inputText}
             placeholder="Email..."
             placeholderTextColor={colors.white}
             onChangeText={(text) => this.setState({ email: text })}
           />
         </View>
-        <View style={s.inputView}>
+        <View style={style.inputView}>
           <TextInput
             secureTextEntry
-            style={s.inputText}
+            style={style.inputText}
             placeholder="Hasło..."
             placeholderTextColor={colors.white}
             onChangeText={(text) => this.setState({ password: text })}
           />
         </View>
         <TouchableOpacity>
-          <Text style={s.forgot} onPress={()=> navigate("Forgot")}>Zapomniałeś hasła?</Text>
+          <Text style={style.forgot} onPress={()=> navigate("Forgot")}>Zapomniałeś hasła?</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={s.loginBtn} onPress={()=> navigate("Main")}>
-          <Text style={s.loginText}>Zaloguj</Text>
+        <TouchableOpacity style={style.loginBtn} onPress={()=> navigate("Main")}>
+          <Text style={style.loginText}>Zaloguj</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=> navigate("Register")}>
-          <Text style={s.signUpText}>Zarejestruj się!</Text>
+          <Text style={style.signUpText}>Zarejestruj się!</Text>
         </TouchableOpacity>
       </View>
     );
