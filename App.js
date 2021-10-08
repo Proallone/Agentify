@@ -6,6 +6,8 @@ import MainScreen from "./src/screens/MainScreen";
 import RegisterScreen from "./src/screens/RegisterScreen";
 import ForgotScreen from "./src/screens/ForgotPasswordScreen"
 
+import Header from "./src/components/Header";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -19,6 +21,7 @@ const App = () => {
           name="Login"
           component={LoginScreen}
           options={{ title: "Login" }}
+          options={{ header: props => <Header {...props} /> }}
         />
          <Stack.Screen
           name="Register"

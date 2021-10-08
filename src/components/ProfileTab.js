@@ -1,66 +1,66 @@
 import { colors } from "../assets/colors/Index";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import { Button } from "react-native-web";
 
 const ProfileTab = (props) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.profileTab}>
+    <View style={styles.profileTab}>
+      <View>
         <Image
-          style={styles.tinyLogo}
+          style={styles.profilePicture}
+          resizeMethod={"auto"}
+          resizeMode={"cover"}
           source={{
             uri: props.imageUrl,
           }}
         />
+      </View>
+      <View>
         <Text style={styles.profileText}>{props.name}</Text>
-        <TouchableOpacity>
-          <Image style={styles.settingsButton}
-           source={{
-            uri: "https://static.thenounproject.com/png/423480-200.png",
-          }}/>
+      </View>
+      <View>
+        <TouchableOpacity style={styles.settingsButton}>
+          <Image
+            source={{
+              uri: "https://static.thenounproject.com/png/423480-200.png",
+            }}
+          />
         </TouchableOpacity>
       </View>
     </View>
   );
 };
-
 export default ProfileTab;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.primary,
-  },
   profileTab: {
     backgroundColor: colors.primaryBlue,
     width: "95%",
     height: 80,
-    borderRadius: 25,
+    borderRadius: 15,
     alignItems: "center",
-    justifyContent: "flex-start",
     flexDirection: "row",
     padding: 10,
-    margin: 10,
+    marginLeft: 10,
+    marginTop: 10,
+    marginRight:10,
   },
-  profileText: {
-    color: colors.white,
-    fontWeight: "bold",
-    padding: 10,
-  },
-  tinyLogo: {
-    marginLeft: 5,
+  profilePicture: {
     width: 50,
     height: 50,
     borderRadius: 15,
     alignContent: "center",
     justifyContent: "center",
   },
-  settingsButton: {
-    height: 40,
-    width: 40,
-    justifyContent: "flex-end",
+  profileText: {
+    color: colors.white,
+    fontWeight: "bold",
+    alignContent: "center",
     padding: 10,
-    margin: 10,
+  },
+  settingsButton: {
+    alignContent:"flex-start",
+    height: 30,
+    width: 30,
   },
 });

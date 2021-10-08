@@ -2,7 +2,6 @@
 
 import React from "react";
 import {
-  StyleSheet,
   Text,
   View,
   TextInput,
@@ -66,23 +65,3 @@ export default class Register extends React.Component {
   }
 }
 
-const style = StyleSheet.create({
-  registerBtn: {
-    width: 120,
-    backgroundColor: colors.secondary,
-    borderRadius: 25,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 40,
-    marginBottom: 10,
-  },
-  loginText: {
-    color: colors.white,
-    fontWeight: "bold",
-  },
-  signUpText: {
-    color: colors.black,
-    fontWeight: "bold",
-  },
-});
