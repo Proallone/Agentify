@@ -7,9 +7,11 @@ import colors from "../assets/colors/Colors";
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.primaryBackground,
-    alignItems: "center",
+    display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
+    padding: 35,
+    backgroundColor: "#fff",
   },
   logoContainer: {
     alignContent: "center",

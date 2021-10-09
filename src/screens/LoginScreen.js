@@ -2,11 +2,10 @@
 //https://www.positronx.io/react-native-firebase-login-and-user-registration-tutorial/
 
 import React, { Component } from "react";
-import { StyleSheet, View, ActivityIndicator } from "react-native";
+import { Image,StyleSheet, View, ActivityIndicator } from "react-native";
 import firebase from "../database/Firebase";
 
-import { Button, Text, TextInput } from "react-native-paper";
-
+import { Button,TextInput} from "react-native-paper";
 
 export default class Login extends Component {
   constructor() {
@@ -60,19 +59,21 @@ export default class Login extends Component {
     }
     return (
       <View style={styles.container}>
+        <View style={{alignItems: "center"}}>
+        <Image style={styles.logo} source={require('../assets/images/Agentify_column_logo.png')}/>
+        </View>
         <TextInput
-         
           icon="at"
           placeholder="Email"
           value={this.state.email}
-          right={<TextInput.Icon name="at" />}
+          right={<TextInput.Icon name="at" disabled={true} />}
           onChangeText={(val) => this.updateInputVal(val, "email")}
         />
         <TextInput
-          style={{marginTop: 10}}
+          style={{ marginTop: 10 }}
           placeholder="Hasło"
           value={this.state.password}
-          right={<TextInput.Icon name="eye" />}
+          right={<TextInput.Icon name="eye" disabled={true}/>}
           onChangeText={(val) => this.updateInputVal(val, "password")}
           maxLength={15}
           secureTextEntry={true}
@@ -108,5 +109,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#fff",
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    alignItems: "center",
+    justifyContent: "center",
+    resizeMode: 'contain'
   },
 });

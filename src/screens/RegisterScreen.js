@@ -1,7 +1,7 @@
 //https://www.positronx.io/react-native-firebase-login-and-user-registration-tutorial/
 
 import React, { Component } from "react";
-import { StyleSheet, View, ActivityIndicator } from "react-native";
+import { StyleSheet, View, ActivityIndicator, Image } from "react-native";
 import firebase from "../database/Firebase";
 
 import { Button, Text, TextInput } from "react-native-paper";
@@ -61,6 +61,9 @@ export default class Register extends Component {
     }
     return (
       <View style={styles.container}>
+            <View style={{alignItems: "center"}}>
+        <Image style={styles.logo} source={require('../assets/images/Agentify_column_logo.png')}/>
+        </View>
         <TextInput
           style={styles.inputStyle}
           placeholder="Imię i nazwisko"
@@ -110,5 +113,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#fff",
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    alignItems: "center",
+    justifyContent: "center",
+    resizeMode: 'contain'
   },
 });
