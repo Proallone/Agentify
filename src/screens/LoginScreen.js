@@ -2,13 +2,13 @@
 //https://www.positronx.io/react-native-firebase-login-and-user-registration-tutorial/
 
 import React, { Component } from "react";
-import { Image, View} from "react-native";
+import { Image, View } from "react-native";
 import firebase from "../database/Firebase";
 import styles from "../styles/Style";
 
-import { Button,TextInput} from "react-native-paper";
+import { Button, TextInput } from "react-native-paper";
 
-import {LoadingIndicator} from "../components/Index"
+import { LoadingIndicator } from "../components/Index";
 export default class Login extends Component {
   constructor() {
     super();
@@ -47,20 +47,24 @@ export default class Login extends Component {
           });
           this.props.navigation.navigate("Main");
         })
-        .catch((error) => this.setState({ errorMessage: error.message }));
+        .catch((error) => {
+          this.setState({ errorMessage: error.message, isLoading:false });
+          alert("Nieudane logowanie!");
+        });
     }
   };
 
   render() {
     if (this.state.isLoading) {
-      return (
-          <LoadingIndicator/>
-      );
+      return <LoadingIndicator />;
     }
     return (
       <View style={styles.container}>
-        <View style={{alignItems: "center"}}>
-        <Image style={styles.logo} source={require('../assets/images/Agentify_column_logo.png')}/>
+        <View style={{ alignItems: "center" }}>
+          <Image
+            style={styles.logo}
+            source={require("../assets/images/Agentify_column_logo.png")}
+          />
         </View>
         <TextInput
           icon="at"
@@ -73,7 +77,7 @@ export default class Login extends Component {
           style={{ marginTop: 10 }}
           placeholder="Hasło"
           value={this.state.password}
-          right={<TextInput.Icon name="eye" disabled={true}/>}
+          right={<TextInput.Icon name="eye" disabled={true} />}
           onChangeText={(val) => this.updateInputVal(val, "password")}
           maxLength={15}
           secureTextEntry={true}
@@ -90,4 +94,3 @@ export default class Login extends Component {
     );
   }
 }
-

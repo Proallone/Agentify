@@ -34,7 +34,7 @@ export default ProfileTab;
 
 const styles = StyleSheet.create({
   profileTab: {
-    backgroundColor: colors.primaryBlue,
+    backgroundColor: colors.primary,
     width: "95%",
     height: 80,
     borderRadius: 15,

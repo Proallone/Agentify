@@ -2,10 +2,9 @@
 
 import React from "react";
 import { Button, Text, TextInput} from "react-native-paper";
-import { View, StyleSheet, Image } from "react-native";
+import { View, Image } from "react-native";
 
-import { colors } from "../assets/colors/Index";
-import s from "../styles/Style";
+import {style} from "../styles/Index"
 import firebase from "../database/Firebase";
 
 export default class Forgot extends React.Component {
@@ -36,9 +35,9 @@ export default class Forgot extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={style.container}>
             <View style={{alignItems: "center"}}>
-        <Image style={styles.logo} source={require('../assets/images/Agentify_column_logo.png')}/>
+        <Image style={style.logo} source={require('../assets/images/Agentify_column_logo.png')}/>
         </View>
         <Text>Odzyskaj hasło</Text>
 
@@ -52,21 +51,3 @@ export default class Forgot extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    padding: 35,
-    backgroundColor: "#fff",
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    alignItems: "center",
-    justifyContent: "center",
-    resizeMode: 'contain'
-  },
-});

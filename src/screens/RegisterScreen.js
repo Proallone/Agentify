@@ -1,11 +1,12 @@
 //https://www.positronx.io/react-native-firebase-login-and-user-registration-tutorial/
 
 import React, { Component } from "react";
-import { StyleSheet, View, ActivityIndicator, Image } from "react-native";
+import { View, ActivityIndicator, Image } from "react-native";
 import firebase from "../database/Firebase";
+import {style} from "../styles/Index"
 
-import { Button, Text, TextInput } from "react-native-paper";
-import {LoadingIndicator} from "../components/Index"
+import { Button, TextInput } from "react-native-paper";
+import { LoadingIndicator } from "../components/Index";
 export default class Register extends Component {
   constructor() {
     super();
@@ -13,6 +14,7 @@ export default class Register extends Component {
       displayName: "",
       email: "",
       password: "",
+      passwordConfirmation: "",
       isLoading: false,
     };
   }
@@ -25,9 +27,11 @@ export default class Register extends Component {
 
   registerUser = () => {
     if (this.state.email === "" && this.state.password === "") {
-      alert("Wprowadź dane logowania!");
+      alert("Wprowadź wszystkie dane!");
     } else if (this.state.email === "" || this.state.password === "") {
-      alert("Niepełne dane logowania!");
+      alert("Niepełne wszystkie dane!");
+    } else if (this.state.password !== this.state.passwordConfirmation) {
+      alert("Hasła nie są takie same!");
     } else {
       this.setState({
         isLoading: true,
@@ -48,30 +52,34 @@ export default class Register extends Component {
           });
           this.props.navigation.navigate("Login");
         })
-        .catch((error) => this.setState({ errorMessage: error.message }));
+        .catch((error) => {
+          this.setState({ errorMessage: error.message, isLoading: false });
+          alert("Nieudana rejestracja!");
+        });
     }
   };
 
   render() {
     if (this.state.isLoading) {
-      return (
-        <LoadingIndicator/>
-      );
+      return <LoadingIndicator />;
     }
     return (
-      <View style={styles.container}>
-            <View style={{alignItems: "center"}}>
-        <Image style={styles.logo} source={require('../assets/images/Agentify_column_logo.png')}/>
+      <View style={style.container}>
+        <View style={{ alignItems: "center" }}>
+          <Image
+            style={style.logo}
+            source={require("../assets/images/Agentify_column_logo.png")}
+          />
         </View>
         <TextInput
-          style={styles.inputStyle}
+          style={style.inputStyle}
           placeholder="Imię i nazwisko"
           value={this.state.displayName}
           onChangeText={(val) => this.updateInputVal(val, "displayName")}
         />
         <TextInput
           placeholder="Email"
-          style={{marginTop: 10}}
+          style={{ marginTop: 10 }}
           value={this.state.email}
           autoCompleteType="email"
           textContentType="emailAddress"
@@ -79,10 +87,19 @@ export default class Register extends Component {
           onChangeText={(val) => this.updateInputVal(val, "email")}
         />
         <TextInput
-         style={{marginTop: 10}}
+          style={{ marginTop: 10 }}
           placeholder="Hasło"
           value={this.state.password}
           onChangeText={(val) => this.updateInputVal(val, "password")}
+          secureTextEntry={true}
+        />
+        <TextInput
+          style={{ marginTop: 10 }}
+          placeholder="Powtórz hasło"
+          value={this.state.passwordConfrimation}
+          onChangeText={(val) =>
+            this.updateInputVal(val, "passwordConfirmation")
+          }
           secureTextEntry={true}
         />
         <Button onPress={() => this.registerUser()}>Zarejestruj</Button>
@@ -94,30 +111,3 @@ export default class Register extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    padding: 35,
-    backgroundColor: "#fff",
-  },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    alignItems: "center",
-    justifyContent: "center",
-    resizeMode: 'contain'
-  },
-});
