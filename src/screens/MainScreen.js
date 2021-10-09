@@ -1,13 +1,24 @@
 import React from "react";
 import ProfileTab from "../components/ProfileTab";
 import { ScrollView } from 'react-native';
+import firebase from '../database/Firebase';
 
 
 export default class Main extends React.Component {
+  constructor() {
+    super();
+    this.state = { 
+      uid: ''
+    }
+  }
   render() {
+    this.state = { 
+      displayName: firebase.auth().currentUser.displayName,
+      uid: firebase.auth().currentUser.uid
+    }   
     return (
       <ScrollView>
-        <ProfileTab imageUrl="https://i.imgur.com/DSgTE3S.jpg" name="Bartosz Jakubski"/>
+        <ProfileTab imageUrl="https://i.imgur.com/DSgTE3S.jpg" name={this.state.displayName}/>
         <ProfileTab imageUrl="https://i.imgur.com/TUPW2it.jpg" name="Kamil Szurgot"/>
         <ProfileTab imageUrl="https://i.imgur.com/fYaerk0.jpg" name="Mateusz Kowalski"/>
         <ProfileTab imageUrl="https://i.imgur.com/fCkPK4N.jpg" name="Amadeusz Flutterniok"/>

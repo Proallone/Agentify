@@ -1,87 +1,99 @@
 // components/login.js
 //https://www.positronx.io/react-native-firebase-login-and-user-registration-tutorial/
 
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, ActivityIndicator } from 'react-native';
-import firebase from '../database/Firebase';
-
+import React, { Component } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  ActivityIndicator,
+} from "react-native";
+import firebase from "../database/Firebase";
 
 export default class Login extends Component {
-  
   constructor() {
     super();
-    this.state = { 
-      email: '', 
-      password: '',
-      isLoading: false
-    }
+    this.state = {
+      email: "",
+      password: "",
+      isLoading: false,
+    };
   }
 
   updateInputVal = (val, prop) => {
     const state = this.state;
     state[prop] = val;
     this.setState(state);
-  }
+  };
 
   userLogin = () => {
-    if(this.state.email === '' && this.state.password === '') {
-      alert('Enter details to signin!')
+    if (this.state.email === "" && this.state.password === "") {
+      alert("Wprowadź poprawne dane logowania!");
+    } else if (this.state.email === "" || this.state.password === "") {
+      alert("Niepełne dane logowania!");
     } else {
       this.setState({
         isLoading: true,
-      })
+      });
       firebase
-      .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then((res) => {
-        console.log(res)
-        console.log('User logged-in successfully!')
-        this.setState({
-          isLoading: false,
-          email: '', 
-          password: ''
+        .auth()
+        .signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then((res) => {
+          console.log(res);
+          console.log("Zalogowano!");
+          this.setState({
+            isLoading: false,
+            email: "",
+            password: "",
+          });
+          this.props.navigation.navigate("Main");
         })
-        this.props.navigation.navigate('Main')
-      })
-      .catch(error => this.setState({ errorMessage: error.message }))
+        .catch((error) => this.setState({ errorMessage: error.message }));
     }
-  }
+  };
 
   render() {
-    if(this.state.isLoading){
-      return(
+    if (this.state.isLoading) {
+      return (
         <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E"/>
+          <ActivityIndicator size="large" color="#9E9E9E" />
         </View>
-      )
-    }    
+      );
+    }
     return (
-      <View style={styles.container}>  
+      <View style={styles.container}>
         <TextInput
           style={styles.inputStyle}
           placeholder="Email"
           value={this.state.email}
-          onChangeText={(val) => this.updateInputVal(val, 'email')}
+          onChangeText={(val) => this.updateInputVal(val, "email")}
         />
         <TextInput
           style={styles.inputStyle}
-          placeholder="Password"
+          placeholder="Hasło"
           value={this.state.password}
-          onChangeText={(val) => this.updateInputVal(val, 'password')}
+          onChangeText={(val) => this.updateInputVal(val, "password")}
           maxLength={15}
           secureTextEntry={true}
-        />   
+        />
         <Button
           color="#3740FE"
-          title="Signin"
+          title="Zaloguj"
           onPress={() => this.userLogin()}
-        />   
+        />
+        <Button
+          color="#3740FE"
+          title="Przypominj hasło"
+          onPress={() => this.props.navigation.navigate("Forgot")}/>
 
-        <Text 
+        <Text
           style={styles.loginText}
-          onPress={() => this.props.navigation.navigate('Register')}>
-          Don't have account? Click here to signup
-        </Text>                          
+          onPress={() => this.props.navigation.navigate("Register")}
+        >
+          Nie posiadasz jeszcze konta? Naciśnij, aby je utworzyć
+        </Text>
       </View>
     );
   }
@@ -94,29 +106,29 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     padding: 35,
-    backgroundColor: '#fff'
+    backgroundColor: "#fff",
   },
   inputStyle: {
-    width: '100%',
+    width: "100%",
     marginBottom: 15,
     paddingBottom: 15,
     alignSelf: "center",
     borderColor: "#ccc",
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
   },
   loginText: {
-    color: '#3740FE',
+    color: "#3740FE",
     marginTop: 25,
-    textAlign: 'center'
+    textAlign: "center",
   },
   preloader: {
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff'
-  }
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
+  },
 });
