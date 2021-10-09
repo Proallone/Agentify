@@ -5,6 +5,7 @@ import { StyleSheet, View, ActivityIndicator, Image } from "react-native";
 import firebase from "../database/Firebase";
 
 import { Button, Text, TextInput } from "react-native-paper";
+import {LoadingIndicator} from "../components/Index"
 export default class Register extends Component {
   constructor() {
     super();
@@ -54,9 +55,7 @@ export default class Register extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E" />
-        </View>
+        <LoadingIndicator/>
       );
     }
     return (

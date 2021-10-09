@@ -1,3 +1,4 @@
 import profileTab from "./ProfileTab"
+import LoadingIndicator from "./LoadingIndicator";
 
-export default {profileTab};
+export {profileTab, LoadingIndicator};

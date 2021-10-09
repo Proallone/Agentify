@@ -2,11 +2,13 @@
 //https://www.positronx.io/react-native-firebase-login-and-user-registration-tutorial/
 
 import React, { Component } from "react";
-import { Image,StyleSheet, View, ActivityIndicator } from "react-native";
+import { Image, View} from "react-native";
 import firebase from "../database/Firebase";
+import styles from "../styles/Style";
 
 import { Button,TextInput} from "react-native-paper";
 
+import {LoadingIndicator} from "../components/Index"
 export default class Login extends Component {
   constructor() {
     super();
@@ -52,9 +54,7 @@ export default class Login extends Component {
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E" />
-        </View>
+          <LoadingIndicator/>
       );
     }
     return (
@@ -91,30 +91,3 @@ export default class Login extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    padding: 35,
-    backgroundColor: "#fff",
-  },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    alignItems: "center",
-    justifyContent: "center",
-    resizeMode: 'contain'
-  },
-});
