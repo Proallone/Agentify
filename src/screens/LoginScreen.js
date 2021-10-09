@@ -7,10 +7,11 @@ import {
   Text,
   View,
   TextInput,
-  Button,
   ActivityIndicator,
 } from "react-native";
 import firebase from "../database/Firebase";
+
+import { Button } from "react-native-paper";
 
 export default class Login extends Component {
   constructor() {
@@ -78,15 +79,10 @@ export default class Login extends Component {
           maxLength={15}
           secureTextEntry={true}
         />
-        <Button
-          color="#3740FE"
-          title="Zaloguj"
-          onPress={() => this.userLogin()}
-        />
-        <Button
-          color="#3740FE"
-          title="Przypominj hasło"
-          onPress={() => this.props.navigation.navigate("Forgot")}/>
+        <Button onPress={() => this.userLogin()}>Zaloguj</Button>
+        <Button onPress={() => this.props.navigation.navigate("Forgot")}>
+          Przypomnij hasło
+        </Button>
 
         <Text
           style={styles.loginText}
