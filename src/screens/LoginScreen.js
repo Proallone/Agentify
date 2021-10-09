@@ -2,16 +2,11 @@
 //https://www.positronx.io/react-native-firebase-login-and-user-registration-tutorial/
 
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  ActivityIndicator,
-} from "react-native";
+import { StyleSheet, View, ActivityIndicator } from "react-native";
 import firebase from "../database/Firebase";
 
-import { Button } from "react-native-paper";
+import { Button, Text, TextInput } from "react-native-paper";
+
 
 export default class Login extends Component {
   constructor() {
@@ -66,15 +61,18 @@ export default class Login extends Component {
     return (
       <View style={styles.container}>
         <TextInput
-          style={styles.inputStyle}
+         
+          icon="at"
           placeholder="Email"
           value={this.state.email}
+          right={<TextInput.Icon name="at" />}
           onChangeText={(val) => this.updateInputVal(val, "email")}
         />
         <TextInput
-          style={styles.inputStyle}
+          style={{marginTop: 10}}
           placeholder="Hasło"
           value={this.state.password}
+          right={<TextInput.Icon name="eye" />}
           onChangeText={(val) => this.updateInputVal(val, "password")}
           maxLength={15}
           secureTextEntry={true}
@@ -84,12 +82,9 @@ export default class Login extends Component {
           Przypomnij hasło
         </Button>
 
-        <Text
-          style={styles.loginText}
-          onPress={() => this.props.navigation.navigate("Register")}
-        >
-          Nie posiadasz jeszcze konta? Naciśnij, aby je utworzyć
-        </Text>
+        <Button onPress={() => this.props.navigation.navigate("Register")}>
+          Zarejestruj się
+        </Button>
       </View>
     );
   }
@@ -103,19 +98,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 35,
     backgroundColor: "#fff",
-  },
-  inputStyle: {
-    width: "100%",
-    marginBottom: 15,
-    paddingBottom: 15,
-    alignSelf: "center",
-    borderColor: "#ccc",
-    borderBottomWidth: 1,
-  },
-  loginText: {
-    color: "#3740FE",
-    marginTop: 25,
-    textAlign: "center",
   },
   preloader: {
     left: 0,

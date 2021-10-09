@@ -1,16 +1,10 @@
 //https://www.positronx.io/react-native-firebase-login-and-user-registration-tutorial/
 
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
-  ActivityIndicator,
-} from "react-native";
+import { StyleSheet, View, ActivityIndicator } from "react-native";
 import firebase from "../database/Firebase";
 
+import { Button, Text, TextInput } from "react-native-paper";
 export default class Register extends Component {
   constructor() {
     super();
@@ -42,7 +36,7 @@ export default class Register extends Component {
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then((res) => {
           res.user.updateProfile({
-            displayName: this.state.displayName
+            displayName: this.state.displayName,
           });
           console.log("User registered successfully!");
           this.setState({
@@ -74,8 +68,8 @@ export default class Register extends Component {
           onChangeText={(val) => this.updateInputVal(val, "displayName")}
         />
         <TextInput
-          style={styles.inputStyle}
           placeholder="Email"
+          style={{marginTop: 10}}
           value={this.state.email}
           autoCompleteType="email"
           textContentType="emailAddress"
@@ -83,24 +77,16 @@ export default class Register extends Component {
           onChangeText={(val) => this.updateInputVal(val, "email")}
         />
         <TextInput
-          style={styles.inputStyle}
+         style={{marginTop: 10}}
           placeholder="Hasło"
           value={this.state.password}
           onChangeText={(val) => this.updateInputVal(val, "password")}
           secureTextEntry={true}
         />
-        <Button
-          color="#3740FE"
-          title="Zarejestruj"
-          onPress={() => this.registerUser()}
-        />
-
-        <Text
-          style={styles.loginText}
-          onPress={() => this.props.navigation.navigate("Login")}
-        >
+        <Button onPress={() => this.registerUser()}>Zarejestruj</Button>
+        <Button onPress={() => this.props.navigation.navigate("Login")}>
           Posiadasz już konto? Zaloguj się
-        </Text>
+        </Button>
       </View>
     );
   }
@@ -114,19 +100,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 35,
     backgroundColor: "#fff",
-  },
-  inputStyle: {
-    width: "100%",
-    marginBottom: 15,
-    paddingBottom: 15,
-    alignSelf: "center",
-    borderColor: "#ccc",
-    borderBottomWidth: 1,
-  },
-  loginText: {
-    color: "#3740FE",
-    marginTop: 25,
-    textAlign: "center",
   },
   preloader: {
     left: 0,

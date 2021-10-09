@@ -6,33 +6,23 @@ import MainScreen from "./src/screens/MainScreen";
 import RegisterScreen from "./src/screens/RegisterScreen";
 import ForgotScreen from "./src/screens/ForgotPasswordScreen";
 
-import Header from "./src/components/Header";
-
+import Theme from "./src/themes/Theme"
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import {DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+import {Provider as PaperProvider } from "react-native-paper";
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const theme = {
-    ...DefaultTheme,
-    colors: {
-      ...DefaultTheme.colors,
-      primary: 'tomato',
-      accent: 'yellow',
-    },
-  };
   return (
-    <PaperProvider theme={theme}>
+    <PaperProvider theme={Theme}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
             name="Login"
             component={LoginScreen}
             options={{ title: "Login" }}
-            //options={{ header: (props) => <Header {...props} /> }}
           />
           <Stack.Screen
             name="Register"
