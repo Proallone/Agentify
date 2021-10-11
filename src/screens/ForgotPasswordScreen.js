@@ -1,10 +1,10 @@
 /* ŻRÓDŁO https://reactnativemaster.com/react-native-login-screen-tutorial/ */
 
 import React from "react";
-import { Button, Text, TextInput} from "react-native-paper";
+import { Button, Text, TextInput } from "react-native-paper";
 import { View, Image } from "react-native";
 
-import {style} from "../styles/Index"
+import { style } from "../styles/Index";
 import firebase from "../database/Firebase";
 
 export default class Forgot extends React.Component {
@@ -27,7 +27,7 @@ export default class Forgot extends React.Component {
           this.props.navigation.navigate("Login");
         })
         .catch((error) => {
-          alert("Brak konta powiązanego z adresem");
+          alert(error.message);
           console.log({ errorMessage: error.message });
         });
     }
@@ -36,16 +36,17 @@ export default class Forgot extends React.Component {
   render() {
     return (
       <View style={style.container}>
-            <View style={{alignItems: "center"}}>
-        <Image style={style.logo} source={require('../assets/images/Agentify_column_logo.png')}/>
+        <View style={{ alignItems: "center" }}>
+          <Image
+            style={style.logo}
+            source={require("../assets/images/Agentify_column_logo.png")}
+          />
         </View>
-        <Text>Odzyskaj hasło</Text>
-
         <TextInput
           placeholder="Email..."
+          right={<TextInput.Icon name="at" disabled={true} />}
           onChangeText={(text) => this.setState({ email: text })}
         />
-
         <Button onPress={() => this.resetPassword()}>Zresetuj hasło</Button>
       </View>
     );

@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import { View, ActivityIndicator, Image } from "react-native";
 import firebase from "../database/Firebase";
-import {style} from "../styles/Index"
+import { style } from "../styles/Index";
 
 import { Button, TextInput } from "react-native-paper";
 import { LoadingIndicator } from "../components/Index";
@@ -49,12 +49,18 @@ export default class Register extends Component {
             displayName: "",
             email: "",
             password: "",
+            passwordConfirmation: "",
           });
           this.props.navigation.navigate("Login");
         })
         .catch((error) => {
-          this.setState({ errorMessage: error.message, isLoading: false });
-          alert("Nieudana rejestracja!");
+          this.setState({
+            isLoading: false,
+            password: "",
+            passwordConfirmation: "",
+          });
+          console.log({ errorMessage: error.message });
+          alert(error.message);
         });
     }
   };
@@ -73,30 +79,41 @@ export default class Register extends Component {
         </View>
         <TextInput
           style={style.inputStyle}
-          placeholder="Imię i nazwisko"
+          placeholder="Imię i nazwisko..."
+          autoFocus={true}
+          autoCapitalize="words"
+          textContentType="name"
           value={this.state.displayName}
+          right={<TextInput.Icon name="account" disabled={true} />}
           onChangeText={(val) => this.updateInputVal(val, "displayName")}
         />
         <TextInput
-          placeholder="Email"
           style={{ marginTop: 10 }}
+          placeholder="Email..."
           value={this.state.email}
           autoCompleteType="email"
+          autoCapitalize="none"
           textContentType="emailAddress"
           keyboardType="email-address"
+          right={<TextInput.Icon name="at" disabled={true} />}
           onChangeText={(val) => this.updateInputVal(val, "email")}
         />
         <TextInput
           style={{ marginTop: 10 }}
-          placeholder="Hasło"
+          placeholder="Hasło..."
+          autoCapitalize="none"
+          autoCorrect={false}
+          textContentType="password"
           value={this.state.password}
+          right={<TextInput.Icon name="key" disabled={true} />}
           onChangeText={(val) => this.updateInputVal(val, "password")}
           secureTextEntry={true}
         />
         <TextInput
           style={{ marginTop: 10 }}
-          placeholder="Powtórz hasło"
+          placeholder="Powtórz hasło..."
           value={this.state.passwordConfrimation}
+          right={<TextInput.Icon name="key-change" disabled={true} />}
           onChangeText={(val) =>
             this.updateInputVal(val, "passwordConfirmation")
           }
@@ -110,4 +127,3 @@ export default class Register extends Component {
     );
   }
 }
-

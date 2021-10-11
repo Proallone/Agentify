@@ -48,8 +48,9 @@ export default class Login extends Component {
           this.props.navigation.navigate("Main");
         })
         .catch((error) => {
-          this.setState({ errorMessage: error.message, isLoading: false });
-          alert("Nieudane logowanie!");
+          this.setState({ isLoading: false, password: "" });
+          console.log({ errorMessage: error.message });
+          alert(error.message);
         });
     }
   };
@@ -68,16 +69,16 @@ export default class Login extends Component {
         </View>
         <TextInput
           icon="at"
-          placeholder="Email"
+          placeholder="Email..."
           value={this.state.email}
           right={<TextInput.Icon name="at" disabled={true} />}
           onChangeText={(val) => this.updateInputVal(val, "email")}
         />
         <TextInput
           style={{ marginTop: 10 }}
-          placeholder="Hasło"
+          placeholder="Hasło..."
           value={this.state.password}
-          right={<TextInput.Icon name="eye" disabled={true} />}
+          right={<TextInput.Icon name="key" disabled={true} />}
           onChangeText={(val) => this.updateInputVal(val, "password")}
           maxLength={15}
           secureTextEntry={true}
