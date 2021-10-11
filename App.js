@@ -1,16 +1,15 @@
 import * as React from "react";
 
-//import { Theme } from "./src/themes/Themes.js";
 import LoginScreen from "./src/screens/LoginScreen";
 import MainScreen from "./src/screens/MainScreen";
 import RegisterScreen from "./src/screens/RegisterScreen";
 import ForgotScreen from "./src/screens/ForgotPasswordScreen";
 
-import Theme from "./src/themes/Theme"
+import Theme from "./src/themes/Theme";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import {Provider as PaperProvider } from "react-native-paper";
+import { Provider as PaperProvider } from "react-native-paper";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,22 +21,22 @@ const App = () => {
           <Stack.Screen
             name="Login"
             component={LoginScreen}
-            options={{ title: "Login" }}
+            options={{ title: "Login", header: () => null }}
           />
           <Stack.Screen
             name="Register"
             component={RegisterScreen}
-            options={{ title: "Rejestracja" }}
+            options={{ title: "Rejestracja", header: () => null }}
           />
           <Stack.Screen
             name="Forgot"
             component={ForgotScreen}
-            options={{ title: "Przypomij" }}
+            options={{ title: "Przypomij", header: () => null }}
           />
           <Stack.Screen
             name="Main"
             component={MainScreen}
-            options={{ title: "Ekran główny" }}
+            options={{ title: "Ekran główny", header: () => null }}
           />
         </Stack.Navigator>
       </NavigationContainer>
@@ -45,4 +44,3 @@ const App = () => {
   );
 };
 export default App;
-

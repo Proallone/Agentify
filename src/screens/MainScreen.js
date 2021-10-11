@@ -1,6 +1,6 @@
 import React from "react";
-import ProfileTab from "../components/ProfileTab";
-import { ScrollView } from 'react-native';
+import {ProfileTab,NavigationTab} from "../components/Index";
+import { ScrollView,StatusBar } from 'react-native';
 import firebase from '../database/Firebase';
 import { Button } from "react-native-paper";
 
@@ -25,11 +25,14 @@ export default class Main extends React.Component {
       uid: firebase.auth().currentUser.uid
     }   
     return (
-      <ScrollView>
+      <ScrollView style={{paddingTop:StatusBar.currentHeight}}>
         <ProfileTab imageUrl="https://i.imgur.com/DSgTE3S.jpg" name={this.state.displayName}/>
-        <Button onPress={() => this.signOut()}>
+        <Button style={{alignSelf: "flex-end"}} onPress={() => this.signOut()}>
           Wyloguj
         </Button>
+        <NavigationTab>
+
+        </NavigationTab>
       </ScrollView>
 
     );

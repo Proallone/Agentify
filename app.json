@@ -27,6 +27,7 @@
     },
     "web": {
       "favicon": "./src/assets/images/Agentify_column_logo_splash.png"
-    }
+    },
+    "description": ""
   }
 }

@@ -2,7 +2,7 @@
 //https://www.positronx.io/react-native-firebase-login-and-user-registration-tutorial/
 
 import React, { Component } from "react";
-import { Image, View } from "react-native";
+import { Image, View, Alert } from "react-native";
 import firebase from "../database/Firebase";
 import styles from "../styles/Style";
 
@@ -27,7 +27,7 @@ export default class Login extends Component {
 
   userLogin = () => {
     if (this.state.email === "" && this.state.password === "") {
-      alert("Wprowadź poprawne dane logowania!");
+      alert("Wprowadź wszystkie dane!");
     } else if (this.state.email === "" || this.state.password === "") {
       alert("Niepełne dane logowania!");
     } else {
@@ -48,7 +48,7 @@ export default class Login extends Component {
           this.props.navigation.navigate("Main");
         })
         .catch((error) => {
-          this.setState({ errorMessage: error.message, isLoading:false });
+          this.setState({ errorMessage: error.message, isLoading: false });
           alert("Nieudane logowanie!");
         });
     }

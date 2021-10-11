@@ -6,6 +6,7 @@ const ProfileTab = (props) => {
   return (
     <View style={styles.profileTab}>
       <View>
+        <TouchableOpacity>
         <Image
           style={styles.profilePicture}
           resizeMethod={"auto"}
@@ -14,18 +15,10 @@ const ProfileTab = (props) => {
             uri: props.imageUrl,
           }}
         />
+        </TouchableOpacity>
       </View>
       <View>
         <Text style={styles.profileText}>{props.name}</Text>
-      </View>
-      <View>
-        <TouchableOpacity style={styles.settingsButton}>
-          <Image
-            source={{
-              uri: "https://static.thenounproject.com/png/423480-200.png",
-            }}
-          />
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -48,7 +41,7 @@ const styles = StyleSheet.create({
   profilePicture: {
     width: 50,
     height: 50,
-    borderRadius: 15,
+    borderRadius: 7,
     alignContent: "center",
     justifyContent: "center",
   },

@@ -1,4 +1,5 @@
-import profileTab from "./ProfileTab"
+import ProfileTab from "./ProfileTab"
 import LoadingIndicator from "./LoadingIndicator";
+import NavigationTab from "./NavigationTab";
 
-export {profileTab, LoadingIndicator};
+export {ProfileTab, LoadingIndicator, NavigationTab};
