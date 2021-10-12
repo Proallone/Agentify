@@ -4,7 +4,6 @@ import { ScrollView,StatusBar } from 'react-native';
 import firebase from '../database/Firebase';
 import { Button } from "react-native-paper";
 
-
 export default class Main extends React.Component {
   constructor() {
     super();
@@ -12,6 +11,7 @@ export default class Main extends React.Component {
       uid: ''
     }
   }
+
   signOut = () => {
     firebase.auth().signOut().then(() => {
       this.props.navigation.navigate('Login')
@@ -30,9 +30,6 @@ export default class Main extends React.Component {
         <Button style={{alignSelf: "flex-end"}} onPress={() => this.signOut()}>
           Wyloguj
         </Button>
-        <NavigationTab>
-
-        </NavigationTab>
       </ScrollView>
 
     );
@@ -40,7 +37,7 @@ export default class Main extends React.Component {
 }
 
 /*
-<ProfileTab imageUrl="https://i.imgur.com/TUPW2it.jpg" name="Kamil Szurgot"/>
+        <ProfileTab imageUrl="https://i.imgur.com/TUPW2it.jpg" name="Kamil Szurgot"/>
         <ProfileTab imageUrl="https://i.imgur.com/fYaerk0.jpg" name="Mateusz Kowalski"/>
         <ProfileTab imageUrl="https://i.imgur.com/fCkPK4N.jpg" name="Amadeusz Flutterniok"/>
         <ProfileTab imageUrl="https://i.imgur.com/KEcLlRE.jpg" name="Korneliusz Dyszczyński"/>
