@@ -1,63 +1,7 @@
 import { colors } from "../assets/colors/Index";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import * as ImagePicker from "expo-image-picker";
-
-import firebase from "../database/Firebase";
-
-const saveMediaToStorage = async (media, path) =>
-  new Promise((resolve, reject) => {
-    const fileRef = firebase.storage().ref().child(path);
-
-    fetch(media)
-      .then((response) => response.blob())
-      .then((blob) => fileRef.put(blob))
-      .then((task) => task.ref.getDownloadURL())
-      .then((downloadURL) => resolve(downloadURL))
-      .catch(() => reject());
-  });
-
-const saveUserProfileImage = async (image) =>
-  new Promise((resolve, reject) => {
-    saveMediaToStorage(
-      image,
-      `${firebase.auth().currentUser.uid}/profileImage/profilePicture`
-    ).then((res) => {
-      firebase
-        .firestore()
-        .collection("user")
-        .doc(firebase.auth().currentUser.uid)
-        .update({ photoUrl: res })
-        .then(() => resolve())
-        .catch(() => reject());
-    });
-  });
-
-const openImagePickerAsync = async () => {
-  let permissionResult =
-    await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-  if (permissionResult.granted === false) {
-    alert("Brak uprawnień!");
-    return;
-  }
-
-  let pickerResult = await ImagePicker.launchImageLibraryAsync({
-    mediaTypes: ImagePicker.MediaTypeOptions.Images,
-    allowsEditing: true,
-    aspect: [1, 1],
-    quality: 1,
-  });
-
-  if (pickerResult.cancelled === true) {
-    console.log(pickerResult);
-    return;
-  }
-  console.log(pickerResult);
-  saveUserProfileImage(pickerResult.uri);
-};
-
-//const openImageRN = async () => {};
+import { openImagePickerAsync } from "../services/ImagePicker";
 
 const ProfileTab = (props) => {
   return (

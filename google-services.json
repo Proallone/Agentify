@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "538139465984",
+    "project_id": "asystentagenta-a0d7b",
+    "storage_bucket": "asystentagenta-a0d7b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538139465984:android:a610200abd739acf767be5",
+        "android_client_info": {
+          "package_name": "com.pwr.asystentagenta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "538139465984-0a4vjutbfuhfb4l8eoggpgsqbobqhaef.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsnQ8AUUsXPBW-bV5asePbe9o78CGNApU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "538139465984-0a4vjutbfuhfb4l8eoggpgsqbobqhaef.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
