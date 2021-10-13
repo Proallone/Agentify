@@ -1,4 +1,3 @@
-
 import saveMediaToStorage from "../services/FirebaseSave";
 import firebase from "../database/Firebase";
 
@@ -9,13 +8,16 @@ const saveUserProfileImage = async (image) =>
       image,
       `${firebase.auth().currentUser.uid}/profileImage/profilePicture`
     ).then((res) => {
-      firebase
+        const user = firebase.auth().currentUser;
+      user
+        .updateProfile({ photoURL: res })
+        /* firebase
         .firestore()
         .collection("user")
         .doc(firebase.auth().currentUser.uid)
-        .update({ photoUrl: res })
+        .update({ photoURL: res }) */
         .then(() => resolve())
         .catch(() => reject());
     });
-  })
-  export default saveUserProfileImage
+  });
+export default saveUserProfileImage;

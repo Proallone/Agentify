@@ -8,11 +8,14 @@ export default class Main extends React.Component {
   constructor() {
     super();
     this.state = { 
-      uid: ''
+      uid: '',
+      displayName: "",
+      profilePicUrl: ""
     }
   }
 
   signOut = () => {
+    console.log(firebase.auth().currentUser)
     firebase.auth().signOut().then(() => {
       this.props.navigation.navigate('Login')
     })
@@ -22,11 +25,12 @@ export default class Main extends React.Component {
   render() {
     this.state = { 
       displayName: firebase.auth().currentUser.displayName,
-      uid: firebase.auth().currentUser.uid
+      uid: firebase.auth().currentUser.uid,
+      profilePicUrl: firebase.auth().currentUser.photoURL,
     }   
     return (
       <ScrollView style={{paddingTop:StatusBar.currentHeight}}>
-        <ProfileTab imageUrl="https://i.imgur.com/DSgTE3S.jpg" name={this.state.displayName}/>
+        <ProfileTab imageUrl={this.state.profilePicUrl} name={this.state.displayName}/>
         <Button style={{alignSelf: "flex-end"}} onPress={() => this.signOut()}>
           Wyloguj
         </Button>
