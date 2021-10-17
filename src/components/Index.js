@@ -1,5 +1,3 @@
-import ProfileTab from "./ProfileTab"
-import LoadingIndicator from "./LoadingIndicator";
-import NavigationTab from "./NavigationTab";
-
-export {ProfileTab, LoadingIndicator, NavigationTab};
+export {default as ProfileTab} from "./ProfileTab"
+export {default as LoadingIndicator} from "./LoadingIndicator"
+export {default as NavigationTab} from "./NavigationTab"

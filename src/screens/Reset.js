@@ -1,13 +1,13 @@
 /* ŻRÓDŁO https://reactnativemaster.com/react-native-login-screen-tutorial/ */
 
 import React from "react";
-import { Button, Text, TextInput } from "react-native-paper";
+import { Button,TextInput } from "react-native-paper";
 import { View, Image } from "react-native";
 
 import { style } from "../styles/Index";
 import firebase from "../database/Firebase";
 
-export default class Forgot extends React.Component {
+export default class Reset extends React.Component {
   state = {
     email: "",
   };

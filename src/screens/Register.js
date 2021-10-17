@@ -1,7 +1,7 @@
 //https://www.positronx.io/react-native-firebase-login-and-user-registration-tutorial/
 
 import React, { Component } from "react";
-import { View, ActivityIndicator, Image } from "react-native";
+import { View, Image } from "react-native";
 import firebase from "../database/Firebase";
 import { style } from "../styles/Index";
 

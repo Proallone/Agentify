@@ -2,7 +2,7 @@
 //https://www.positronx.io/react-native-firebase-login-and-user-registration-tutorial/
 
 import React, { Component } from "react";
-import { Image, View, Alert } from "react-native";
+import { Image, View } from "react-native";
 import firebase from "../database/Firebase";
 import styles from "../styles/Style";
 
@@ -84,7 +84,7 @@ export default class Login extends Component {
           secureTextEntry={true}
         />
         <Button onPress={() => this.userLogin()}>Zaloguj</Button>
-        <Button onPress={() => this.props.navigation.navigate("Forgot")}>
+        <Button onPress={() => this.props.navigation.navigate("Reset")}>
           Przypomnij hasło
         </Button>
 

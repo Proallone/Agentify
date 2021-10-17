@@ -1,3 +1,1 @@
-import style from "./Style"
-
-export { style }
+export {default as style} from "./Style"
