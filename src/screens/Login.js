@@ -45,7 +45,7 @@ export default class Login extends Component {
             email: "",
             password: "",
           });
-          this.props.navigation.navigate("Main");
+          //this.props.navigation.navigate("Main");
         })
         .catch((error) => {
           this.setState({ isLoading: false, password: "" });
