@@ -5,6 +5,7 @@ import Theme from "../themes/Theme";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Provider as PaperProvider } from "react-native-paper";
+import NewClient from "../screens/NewClient";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,11 @@ export default function AppStack  () {
             name="Main"
             component={Main}
             options={{ title: "Ekran główny", header: () => null }}
+          />
+          <Stack.Screen
+            name="NewClient"
+            component={NewClient}
+            options={{ title: "Nowy Klient", header: () => null }}
           />
         </Stack.Navigator>
     </PaperProvider>

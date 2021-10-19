@@ -1,7 +1,7 @@
 /* ŻRÓDŁO https://reactnativemaster.com/react-native-login-screen-tutorial/ */
 
 import React from "react";
-import { Button,TextInput } from "react-native-paper";
+import { Button, TextInput } from "react-native-paper";
 import { View, Image } from "react-native";
 
 import { style } from "../styles/Index";
@@ -47,7 +47,9 @@ export default class Reset extends React.Component {
           right={<TextInput.Icon name="at" disabled={true} />}
           onChangeText={(text) => this.setState({ email: text })}
         />
-        <Button onPress={() => this.resetPassword()}>Zresetuj hasło</Button>
+        <Button style={{ marginTop: 5 }} onPress={() => this.resetPassword()}>
+          Zresetuj hasło
+        </Button>
       </View>
     );
   }

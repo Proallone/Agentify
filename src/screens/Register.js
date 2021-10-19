@@ -119,8 +119,13 @@ export default class Register extends Component {
           }
           secureTextEntry={true}
         />
-        <Button onPress={() => this.registerUser()}>Zarejestruj</Button>
-        <Button onPress={() => this.props.navigation.navigate("Login")}>
+        <Button style={{ marginTop: 5 }} onPress={() => this.registerUser()}>
+          Zarejestruj
+        </Button>
+        <Button
+          style={{ marginTop: 5 }}
+          onPress={() => this.props.navigation.navigate("Login")}
+        >
           Posiadasz już konto? Zaloguj się
         </Button>
       </View>

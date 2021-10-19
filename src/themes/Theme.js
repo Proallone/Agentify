@@ -1,5 +1,6 @@
 import { DefaultTheme, configureFonts } from "react-native-paper";
 import fontConfig from "../assets/fonts/Fonts";
+import colors from "../assets/colors/Colors";
 //https://coolors.co/f43737
 
 const Theme = {
@@ -8,7 +9,7 @@ const Theme = {
   roundness: 30,
   colors: {
     ...DefaultTheme.colors,
-    primary: "#F43737",
+    primary: colors.primary,
     accent: "red",
   },
 };

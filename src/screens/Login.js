@@ -39,13 +39,12 @@ export default class Login extends Component {
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .then((res) => {
           console.log(res);
-          console.log("Zalogowano!");
+          console.log("User logged in!");
           this.setState({
             isLoading: false,
             email: "",
             password: "",
           });
-          //this.props.navigation.navigate("Main");
         })
         .catch((error) => {
           this.setState({ isLoading: false, password: "" });
@@ -83,12 +82,20 @@ export default class Login extends Component {
           maxLength={15}
           secureTextEntry={true}
         />
-        <Button onPress={() => this.userLogin()}>Zaloguj</Button>
-        <Button onPress={() => this.props.navigation.navigate("Reset")}>
+        <Button style={{ marginTop: 5 }} onPress={() => this.userLogin()}>
+          Zaloguj
+        </Button>
+        <Button
+          style={{ marginTop: 5 }}
+          onPress={() => this.props.navigation.navigate("Reset")}
+        >
           Przypomnij hasło
         </Button>
 
-        <Button onPress={() => this.props.navigation.navigate("Register")}>
+        <Button
+          style={{ marginTop: 5 }}
+          onPress={() => this.props.navigation.navigate("Register")}
+        >
           Zarejestruj się
         </Button>
       </View>

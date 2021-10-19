@@ -1,6 +1,5 @@
-import saveMediaToStorage from "../services/FirebaseSave";
+import saveMediaToStorage from "./FirebaseSave";
 import firebase from "../database/Firebase";
-
 
 const saveUserProfileImage = async (image) =>
   new Promise((resolve, reject) => {
@@ -8,14 +7,9 @@ const saveUserProfileImage = async (image) =>
       image,
       `${firebase.auth().currentUser.uid}/profileImage/profilePicture`
     ).then((res) => {
-        const user = firebase.auth().currentUser;
+      const user = firebase.auth().currentUser;
       user
         .updateProfile({ photoURL: res })
-        /* firebase
-        .firestore()
-        .collection("user")
-        .doc(firebase.auth().currentUser.uid)
-        .update({ photoURL: res }) */
         .then(() => resolve())
         .catch(() => reject());
     });
