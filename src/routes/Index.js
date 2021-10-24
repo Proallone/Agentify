@@ -1,7 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import { AuthenticatedUserProvider } from './AuthenticatedUserProvider';
-import Router from './Router';
+import { AuthenticatedUserProvider } from "./AuthenticatedUserProvider";
+import Router from "./Router";
+
+import Theme from "../themes/Theme";
+import { Provider as PaperProvider } from "react-native-paper";
+
 
 /**
  * Wrap all providers here
@@ -10,8 +14,10 @@ import Router from './Router';
 
 export default function Routes() {
   return (
-    <AuthenticatedUserProvider>
-      <Router/>
-    </AuthenticatedUserProvider>
+    <PaperProvider theme={Theme}>
+      <AuthenticatedUserProvider>
+        <Router />
+      </AuthenticatedUserProvider>
+    </PaperProvider>
   );
 }
