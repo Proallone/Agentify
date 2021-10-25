@@ -1,11 +1,11 @@
-import React from "react";
+import React,{ Component } from "react";
 import { ProfileTab, NavigationTab } from "../components/Index";
 import { ScrollView, StatusBar } from "react-native";
 import firebase from "../database/Firebase";
 import { Button } from "react-native-paper";
 import {firebaseSignOut} from "../services/FirebaseMethods";
 
-export default class Main extends React.Component {
+export default class Main extends Component {
   constructor() {
     super();
     this.state = {
@@ -35,7 +35,7 @@ export default class Main extends React.Component {
         </Button>
         <Button
           style={{ alignSelf: "center", alignContent: "flex-end" }}
-          onPress={() => this.props.navigation.navigate("NewClient") }
+          onPress={() => this.props.navigation.navigate("AddClient") }
         >
           Nowy Klient
         </Button>

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { View, Image } from "react-native";
+import { View, StatusBar } from "react-native";
 import firebase from "../database/Firebase";
-import { style } from "../styles/Index";
+import styles from "../styles/Style";
 import colors from "../assets/colors/Colors";
 
 import { Button, Text, TextInput } from "react-native-paper";
 import { LoadingIndicator } from "../components/Index";
 
-export default class NewClient extends Component {
+export default class AddClient extends Component {
   constructor() {
     super();
     this.state = {
@@ -55,8 +55,7 @@ export default class NewClient extends Component {
       return <LoadingIndicator />;
     }
     return (
-      <View style={style.container}>
-        <Text style={colors.primary}>Dodaj klienta</Text>
+      <View style={styles.container}>
         <TextInput
           style={{ marginTop: 5 }}
           placeholder="Imię"

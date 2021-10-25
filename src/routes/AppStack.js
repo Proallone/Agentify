@@ -1,7 +1,8 @@
 import * as React from "react";
-import Main from "../screens/Main";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import NewClient from "../screens/NewClient";
+
+import Main from "../screens/Main";
+import AddClient from "../screens/AddClient";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,9 +15,9 @@ export default function AppStack  () {
             options={{ title: "Ekran główny", header: () => null }}
           />
           <Stack.Screen
-            name="NewClient"
-            component={NewClient}
-            options={{ title: "Nowy Klient", header: () => null }}
+            name="AddClient"
+            component={AddClient}
+            options={{ title: "Nowy Klient"}}
           />
         </Stack.Navigator>
   );

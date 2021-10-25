@@ -1,13 +1,13 @@
 /* ŻRÓDŁO https://reactnativemaster.com/react-native-login-screen-tutorial/ */
 
-import React from "react";
+import React,{ Component } from "react";
 import { Button, TextInput } from "react-native-paper";
 import { View, Image } from "react-native";
 
 import { style } from "../styles/Index";
 import firebase from "../database/Firebase";
 
-export default class Reset extends React.Component {
+export default class Reset extends Component {
   state = {
     email: "",
   };
@@ -24,6 +24,7 @@ export default class Reset extends React.Component {
         .sendPasswordResetEmail(this.state.email)
         .then(() => {
           this.setState({ email: "" });
+          alert("Na wskazany adres wysłano wiadomość z resetem hasła");
           this.props.navigation.navigate("Login");
         })
         .catch((error) => {
