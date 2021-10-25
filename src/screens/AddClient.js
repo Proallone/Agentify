@@ -1,47 +1,67 @@
 import React, { Component } from "react";
-import { View, StatusBar } from "react-native";
+import { View } from "react-native";
 import firebase from "../database/Firebase";
 import styles from "../styles/Style";
-import colors from "../assets/colors/Colors";
 
 import { Button, Text, TextInput } from "react-native-paper";
 import { LoadingIndicator } from "../components/Index";
 
+
 export default class AddClient extends Component {
   constructor() {
     super();
-    this.state = {
-      name: "",
-      surname: "",
-      PESEL: "",
-      email: "",
-      phone_number: "",
-      post_code: "",
-      city: "",
-      adress: "",
-    };
+    this.state = this.getInitialState();
   }
 
+  getInitialState = () => ({
+    name: "",
+    surname: "",
+    PESEL: "",
+    email: "",
+    phone_number: "",
+    post_code: "",
+    city: "",
+    adress: "",
+  });
+
+  resetState = () => {
+    this.setState(this.getInitialState());
+ }
+
   saveNewClient = async () => {
-    firebase
-      .firestore()
-      .collection("clients_" + firebase.auth().currentUser.uid)
-      .add({
-        name: this.state.name,
-        surname: this.state.surname,
-        PESEL: parseInt(this.state.PESEL),
-        email: this.state.email,
-        phone_number: parseInt(this.state.phone_number),
-        post_code: this.state.post_code,
-        city: this.state.city,
-        adress: this.state.adress,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      })
-      .then(
-        (docRef) => console.log("Document written with ID: ", docRef.id),
-        alert("Dodano klienta!")
-      )
-      .catch((error) => console.error("Error adding document: ", error));
+    if (
+      this.state.name === "" ||
+      this.state.surname === "" ||
+      this.state.PESEL === "" ||
+      this.state.email === "" ||
+      this.state.phone_number === "" ||
+      this.state.post_code === "" ||
+      this.state.city === "" ||
+      this.state.adress === ""
+    ) {
+      alert("Uzupełnij wszystkie pola!")
+    } else {
+      firebase
+        .firestore()
+        .collection("clients_" + firebase.auth().currentUser.uid)
+        .add({
+          name: this.state.name,
+          surname: this.state.surname,
+          PESEL: parseInt(this.state.PESEL),
+          email: this.state.email,
+          phone_number: parseInt(this.state.phone_number),
+          post_code: this.state.post_code,
+          city: this.state.city,
+          adress: this.state.adress,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        })
+        .then(
+          (docRef) => console.log("Document written with ID: ", docRef.id),
+          this.state = this.resetState(this.getInitialState()),
+          alert("Dodano klienta!")
+        )
+        .catch((error) => console.error("Error adding document: ", error));
+    }
   };
 
   updateInputVal = (val, prop) => {
