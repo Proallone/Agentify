@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { View } from "react-native";
-import firebase from "../database/Firebase";
-import styles from "../styles/Style";
-
 import { Button, Text, TextInput } from "react-native-paper";
+
 import { LoadingIndicator } from "../components/Index";
+import firebase from "../database/Firebase";
+import styles from "../assets/styles/Style";
 
 export default class AddClient extends Component {
   constructor() {

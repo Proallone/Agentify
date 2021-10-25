@@ -4,7 +4,7 @@ import React,{ Component } from "react";
 import { Button, TextInput } from "react-native-paper";
 import { View, Image } from "react-native";
 
-import { style } from "../styles/Index";
+import { style } from "../assets/styles/Index";
 import firebase from "../database/Firebase";
 
 export default class Reset extends Component {

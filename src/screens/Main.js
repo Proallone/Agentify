@@ -1,8 +1,9 @@
 import React,{ Component } from "react";
-import { ProfileTab, NavigationTab } from "../components/Index";
 import { ScrollView, StatusBar } from "react-native";
-import firebase from "../database/Firebase";
 import { Button } from "react-native-paper";
+
+import { ProfileTab, NavigationTab } from "../components/Index";
+import firebase from "../database/Firebase";
 import {firebaseSignOut} from "../services/FirebaseMethods";
 
 export default class Main extends Component {

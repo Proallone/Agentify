@@ -3,12 +3,13 @@
 
 import React, { Component } from "react";
 import { Image, View } from "react-native";
-import firebase from "../database/Firebase";
-import styles from "../styles/Style";
-
 import { Button, TextInput } from "react-native-paper";
 
+import firebase from "../database/Firebase";
+import styles from "../assets/styles/Style";
 import { LoadingIndicator } from "../components/Index";
+
+
 export default class Login extends Component {
   constructor() {
     super();

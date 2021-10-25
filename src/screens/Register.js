@@ -2,11 +2,11 @@
 
 import React, { Component } from "react";
 import { View, Image } from "react-native";
-import firebase from "../database/Firebase";
-import { style } from "../styles/Index";
-
 import { Button, TextInput } from "react-native-paper";
+
 import { LoadingIndicator } from "../components/Index";
+import firebase from "../database/Firebase";
+import { style } from "../assets/styles/Index";
 export default class Register extends Component {
   constructor() {
     super();

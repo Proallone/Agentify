@@ -3,7 +3,7 @@ import React from "react";
 import { AuthenticatedUserProvider } from "./AuthenticatedUserProvider";
 import Router from "./Router";
 
-import Theme from "../themes/Theme";
+import Theme from "../assets/themes/Theme";
 import { Provider as PaperProvider } from "react-native-paper";
 
 

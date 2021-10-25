@@ -2,7 +2,7 @@
 
 //"use strict";
 import { StyleSheet,StatusBar } from "react-native";
-import colors from "../assets/colors/Colors";
+import colors from "../colors/Colors";
 
 const style = StyleSheet.create({
   container: {
