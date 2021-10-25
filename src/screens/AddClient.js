@@ -5,6 +5,7 @@ import { Button, Text, TextInput } from "react-native-paper";
 import { LoadingIndicator } from "../components/Index";
 import firebase from "../database/Firebase";
 import styles from "../assets/styles/Style";
+import { peselValitadion } from "../utils/PeselValidation";
 
 export default class AddClient extends Component {
   constructor() {
@@ -27,37 +28,6 @@ export default class AddClient extends Component {
     this.setState(this.getInitialState());
   };
 
-  validatepesel = (pesel) => {
-    /* function ref https://blog.aleksander.kaweczynski.pl/walidacja-numerow-pesel-nip-regon-w-javascript-i-php/ */
-    var reg = /^[0-9]{11}$/;
-    if (reg.test(pesel) == false) return false;
-    else {
-      var digits = ("" + pesel).split("");
-      if (
-        parseInt(pesel.substring(4, 6)) > 31 ||
-        parseInt(pesel.substring(2, 4)) > 12
-      )
-        return false;
-
-      var checksum =
-        (1 * parseInt(digits[0]) +
-          3 * parseInt(digits[1]) +
-          7 * parseInt(digits[2]) +
-          9 * parseInt(digits[3]) +
-          1 * parseInt(digits[4]) +
-          3 * parseInt(digits[5]) +
-          7 * parseInt(digits[6]) +
-          9 * parseInt(digits[7]) +
-          1 * parseInt(digits[8]) +
-          3 * parseInt(digits[9])) %
-        10;
-      if (checksum == 0) checksum = 10;
-      checksum = 10 - checksum;
-
-      return parseInt(digits[10]) == checksum;
-    }
-  };
-
   saveNewClient = async () => {
     if (
       this.state.name === "" ||
@@ -70,7 +40,7 @@ export default class AddClient extends Component {
       this.state.adress === ""
     ) {
       alert("Uzupełnij wszystkie pola!");
-    } else if (this.validatepesel(this.state.PESEL) == false) {
+    } else if (peselValitadion(this.state.PESEL) == false) {
       alert("Wprowadz prawidłowy PESEL!");
     } else {
       firebase
@@ -88,11 +58,11 @@ export default class AddClient extends Component {
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         })
         .then(
-          (docRef) => console.log("Document written with ID: ", docRef.id),
+          (docRef) => console.log("Added client with ID:", docRef.id),
           (this.state = this.resetState(this.getInitialState())),
           alert("Dodano klienta!")
         )
-        .catch((error) => console.error("Error adding document: ", error));
+        .catch((error) => console.error("Error adding client!", error));
     }
   };
 

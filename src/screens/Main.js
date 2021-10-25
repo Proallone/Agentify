@@ -1,6 +1,7 @@
 import React,{ Component } from "react";
 import { ScrollView, StatusBar } from "react-native";
 import { Button } from "react-native-paper";
+import colors from "../assets/colors/Colors";
 
 import { ProfileTab, NavigationTab } from "../components/Index";
 import firebase from "../database/Firebase";
@@ -23,7 +24,8 @@ export default class Main extends Component {
       profilePicUrl: firebase.auth().currentUser.photoURL,
     };
     return (
-      <ScrollView style={{ paddingTop: StatusBar.currentHeight }}>
+      // DO POPRAWKIIIIIIIIIIIIIII STYLEE
+      <ScrollView style={{ paddingTop: StatusBar.currentHeight, backgroundColor: colors.white }}>
         <ProfileTab
           imageUrl={this.state.profilePicUrl}
           name={this.state.displayName}
