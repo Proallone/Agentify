@@ -41,7 +41,7 @@ export default class Main extends Component {
               justifyContent: "center",
             }}
             icon={"logout"}
-            mode="contained"
+            mode="outlined"
             onPress={() => firebaseSignOut(this.state.uid)}
           >
             Wyloguj
@@ -53,7 +53,7 @@ export default class Main extends Component {
               height: "100%",
               justifyContent: "center",
             }}
-            mode="contained"
+            mode="outlined"
           >
             HEO
           </Button>
@@ -64,7 +64,7 @@ export default class Main extends Component {
               height: "100%",
               justifyContent: "center",
             }}
-            mode="contained"
+            mode="outlined"
           >
             HEO
           </Button>
@@ -75,8 +75,8 @@ export default class Main extends Component {
               height: "100%",
               justifyContent: "center",
             }}
-            mode="contained"
-            icon={"add"}
+            mode="outlined"
+            icon={"account-plus"}
             onPress={() => this.props.navigation.navigate("AddClient")}
           >
             Nowy Klient

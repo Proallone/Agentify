@@ -8,7 +8,7 @@ import { Button, TextInput } from "react-native-paper";
 import firebase from "../database/Firebase";
 import styles from "../assets/styles/Style";
 import { LoadingIndicator } from "../components/Index";
-
+import colors from "../assets/colors/Colors";
 
 export default class Login extends Component {
   constructor() {
@@ -61,6 +61,7 @@ export default class Login extends Component {
     }
     return (
       <View style={styles.container}>
+        <View style={{flex:5, justifyContent: "center"}}>
         <View style={{ alignItems: "center" }}>
           <Image
             style={styles.logo}
@@ -83,8 +84,20 @@ export default class Login extends Component {
           maxLength={15}
           secureTextEntry={true}
         />
-        <Button style={{ marginTop: 5 }} onPress={() => this.userLogin()}>
+        <Button
+          mode={"contained"}
+          style={{ marginTop: 5 }}
+          onPress={() => this.userLogin()}
+        >
           Zaloguj
+        </Button>
+        </View>
+        <View style={{ flex: 1,justifyContent: "flex-end"}}>
+        <Button
+          style={{ marginTop: 5 }}
+          onPress={() => this.props.navigation.navigate("Register")}
+        >
+          Zarejestruj się
         </Button>
         <Button
           style={{ marginTop: 5 }}
@@ -92,13 +105,7 @@ export default class Login extends Component {
         >
           Przypomnij hasło
         </Button>
-
-        <Button
-          style={{ marginTop: 5 }}
-          onPress={() => this.props.navigation.navigate("Register")}
-        >
-          Zarejestruj się
-        </Button>
+        </View>
       </View>
     );
   }
