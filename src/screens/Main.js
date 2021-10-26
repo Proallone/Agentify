@@ -26,13 +26,51 @@ export default class Main extends Component {
     return (
       // DO POPRAWKIIIIIIIIIIIIIII STYLEE
       <View style={styles.mainContainer}>
-        <View>
+        <View style={{flex: 1}}>
           <ProfileTab
             imageUrl={this.state.profilePicUrl}
             name={this.state.displayName}
           />
         </View>
         <View style={styles.buttonsContainer}>
+        <Button
+            style={styles.buttonStyle}
+            contentStyle={{
+              width: "100%",
+              height: "100%",
+              justifyContent: "center",
+            }}
+            mode="outlined"
+            icon={"account-plus"}
+            onPress={() => this.props.navigation.navigate("AddClient")}
+          >
+            Nowy Klient
+          </Button>
+          <Button
+            style={styles.buttonStyle}
+            contentStyle={{
+              width: "100%",
+              height: "100%",
+              justifyContent: "center",
+            }}
+            mode="outlined"
+            icon={"file-document-edit-outline"}
+            onPress={() => this.props.navigation.navigate("AddDoc")}
+          >
+            Dodaj polisę
+          </Button>
+          <Button
+            style={styles.buttonStyle}
+            contentStyle={{
+              width: "100%",
+              height: "100%",
+              justifyContent: "center",
+            }}
+            mode="outlined"
+            icon={"calendar-month-outline"}
+          >
+            Kalendarz
+          </Button>
           <Button
            style={styles.buttonStyle}
             contentStyle={{
@@ -45,41 +83,6 @@ export default class Main extends Component {
             onPress={() => firebaseSignOut(this.state.uid)}
           >
             Wyloguj
-          </Button>
-          <Button
-            style={styles.buttonStyle}
-            contentStyle={{
-              width: "100%",
-              height: "100%",
-              justifyContent: "center",
-            }}
-            mode="outlined"
-          >
-            HEO
-          </Button>
-          <Button
-            style={styles.buttonStyle}
-            contentStyle={{
-              width: "100%",
-              height: "100%",
-              justifyContent: "center",
-            }}
-            mode="outlined"
-          >
-            HEO
-          </Button>
-          <Button
-            style={styles.buttonStyle}
-            contentStyle={{
-              width: "100%",
-              height: "100%",
-              justifyContent: "center",
-            }}
-            mode="outlined"
-            icon={"account-plus"}
-            onPress={() => this.props.navigation.navigate("AddClient")}
-          >
-            Nowy Klient
           </Button>
         </View>
       </View>
@@ -95,6 +98,7 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     backgroundColor: colors.white,
     flexDirection: "row",
+    flex:2,
     flexWrap: "wrap",
     alignItems: "flex-start", // if you want to fill rows left to right
     justifyContent: "space-evenly",
