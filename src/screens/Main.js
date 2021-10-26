@@ -1,11 +1,11 @@
-import React,{ Component } from "react";
-import { ScrollView, StatusBar } from "react-native";
+import React, { Component } from "react";
+import { ScrollView, StatusBar, StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
 import colors from "../assets/colors/Colors";
 
-import { ProfileTab, NavigationTab } from "../components/Index";
+import { ProfileTab, NavigationButton } from "../components/Index";
 import firebase from "../database/Firebase";
-import {firebaseSignOut} from "../services/FirebaseMethods";
+import { firebaseSignOut } from "../services/FirebaseMethods";
 
 export default class Main extends Component {
   constructor() {
@@ -25,24 +25,85 @@ export default class Main extends Component {
     };
     return (
       // DO POPRAWKIIIIIIIIIIIIIII STYLEE
-      <ScrollView style={{ paddingTop: StatusBar.currentHeight, backgroundColor: colors.white }}>
-        <ProfileTab
-          imageUrl={this.state.profilePicUrl}
-          name={this.state.displayName}
-        />
-        <Button
-          style={{ alignSelf: "center", alignContent: "flex-end" }}
-          onPress={() => firebaseSignOut(this.state.uid)}
-        >
-          Wyloguj
-        </Button>
-        <Button
-          style={{ alignSelf: "center", alignContent: "flex-end" }}
-          onPress={() => this.props.navigation.navigate("AddClient") }
-        >
-          Nowy Klient
-        </Button>
-      </ScrollView>
+      <View style={styles.mainContainer}>
+        <View>
+          <ProfileTab
+            imageUrl={this.state.profilePicUrl}
+            name={this.state.displayName}
+          />
+        </View>
+        <View style={styles.buttonsContainer}>
+          <Button
+           style={styles.buttonStyle}
+            contentStyle={{
+              width: "100%",
+              height: "100%",
+              justifyContent: "center",
+            }}
+            icon={"logout"}
+            mode="contained"
+            onPress={() => firebaseSignOut(this.state.uid)}
+          >
+            Wyloguj
+          </Button>
+          <Button
+            style={styles.buttonStyle}
+            contentStyle={{
+              width: "100%",
+              height: "100%",
+              justifyContent: "center",
+            }}
+            mode="contained"
+          >
+            HEO
+          </Button>
+          <Button
+            style={styles.buttonStyle}
+            contentStyle={{
+              width: "100%",
+              height: "100%",
+              justifyContent: "center",
+            }}
+            mode="contained"
+          >
+            HEO
+          </Button>
+          <Button
+            style={styles.buttonStyle}
+            contentStyle={{
+              width: "100%",
+              height: "100%",
+              justifyContent: "center",
+            }}
+            mode="contained"
+            icon={"add"}
+            onPress={() => this.props.navigation.navigate("AddClient")}
+          >
+            Nowy Klient
+          </Button>
+        </View>
+      </View>
     );
   }
 }
+const styles = StyleSheet.create({
+  mainContainer: {
+    paddingTop: StatusBar.currentHeight,
+    backgroundColor: colors.white,
+    flex: 1,
+  },
+  buttonsContainer: {
+    backgroundColor: colors.white,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "flex-start", // if you want to fill rows left to right
+    justifyContent: "space-evenly",
+   
+  },
+  buttonStyle: {
+    width: "40%",
+    height: 80,
+    justifyContent: "center",
+    marginBottom: 20
+  },
+});

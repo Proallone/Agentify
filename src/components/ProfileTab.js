@@ -8,7 +8,6 @@ import { openImagePickerAsync } from "../services/ImagePicker";
 const ProfileTab = (props) => {
   return (
     <View style={styles.profileTab}>
-      
       <View style={styles.avatarOutline}>
         {/*Using openImagePickerAsync with .bind to disable auto triggering when entering this screen (problem with render function) 
         source https://stackoverflow.com/a/42330255/14476262*/}
@@ -21,7 +20,6 @@ const ProfileTab = (props) => {
           />
         </TouchableOpacity>
       </View>
-      
       <Title style={styles.profileText}>{props.name}</Title>
     </View>
   );
