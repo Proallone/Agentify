@@ -12,7 +12,7 @@ export default class AddDoc extends Component {
   render() {
     return (
       <View style={styles.container}>
-      {/*   <List.Section title="Accordions">
+        {/*   <List.Section title="Accordions">
           <List.Accordion
             title="Uncontrolled Accordion"
             left={(props) => <List.Icon {...props} icon="folder" />}

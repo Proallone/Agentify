@@ -3,7 +3,7 @@ import { ScrollView, StatusBar, StyleSheet, View } from "react-native";
 import { Button, IconButton } from "react-native-paper";
 import colors from "../assets/colors/Colors";
 
-import { ProfileTab, NavigationButton } from "../components/Index";
+import { ProfileTab} from "../components/Index";
 import firebase from "../database/Firebase";
 import { firebaseSignOut } from "../services/FirebaseMethods";
 

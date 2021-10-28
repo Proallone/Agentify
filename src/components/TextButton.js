@@ -6,9 +6,8 @@ const TextButton = (props) => {
   return (
     <Button
       style={styles.customButton}
-      contentStyle={{ height: 50 }}
+      contentStyle={{ height: styles.customButton.height}}
       mode={"text"}
-      style={{ marginTop: 10, height: 50, justifyContent: "center" }}
       onPress={() => props.function()}
     >
       {props.text}
@@ -19,8 +18,8 @@ export default TextButton;
 
 const styles = StyleSheet.create({
   customButton: {
-    marginTop: 5,
     height: 50,
     justifyContent: "center",
+    marginTop: 10,
   },
 });
