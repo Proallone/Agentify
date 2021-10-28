@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ScrollView, StatusBar, StyleSheet, View } from "react-native";
-import { Button } from "react-native-paper";
+import { Button, IconButton } from "react-native-paper";
 import colors from "../assets/colors/Colors";
 
 import { ProfileTab, NavigationButton } from "../components/Index";
@@ -26,7 +26,7 @@ export default class Main extends Component {
     return (
       // DO POPRAWKIIIIIIIIIIIIIII STYLEE
       <View style={styles.mainContainer}>
-        <View style={{flex: 1}}>
+        <View style={{flex: 1, flexDirection: "row"}}>
           <ProfileTab
             imageUrl={this.state.profilePicUrl}
             name={this.state.displayName}

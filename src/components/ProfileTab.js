@@ -1,9 +1,10 @@
 import { colors } from "../assets/colors/Index";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Avatar, Divider, Title, Badge } from "react-native-paper";
+import { Avatar, Divider, Title, Badge, IconButton } from "react-native-paper";
 import React from "react";
 
-import { openImagePickerAsync } from "../services/ImagePicker";
+import { openImagePickerAsync } from "../utils/ImagePicker";
+import getDocumentsFirebase from "../services/FirebaseGet";
 
 const ProfileTab = (props) => {
   return (
@@ -20,7 +21,10 @@ const ProfileTab = (props) => {
           />
         </TouchableOpacity>
       </View>
+      <View style={styles.lowerTab}>
       <Title style={styles.profileText}>{props.name}</Title>
+      <IconButton icon="cog" size={30}  color={colors.primary} style={{justifyContent:"space-around"}} /* onPress={()=>getDocumentsFirebase()} *//>
+      </View>
     </View>
   );
 };
@@ -29,6 +33,15 @@ export default ProfileTab;
 const styles = StyleSheet.create({
   profileTab: {
     //backgroundColor: colors.white,
+    width: "100%",
+    height: 200,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+  },
+  lowerTab:{
+    flex:1,
+    flexDirection:"row",
     width: "100%",
     height: 200,
     justifyContent: "center",
@@ -57,5 +70,6 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontWeight: "bold",
     alignContent: "center",
+    justifyContent: "center",
   },
 });

@@ -1,5 +1,5 @@
 import * as ImagePicker from "expo-image-picker";
-import saveUserProfileImage from "./FirebaseUploadImage";
+import saveUserProfileImage from "../services/FirebaseUploadImage";
 
 export const openImagePickerAsync = async () => {
   let permissionResult =

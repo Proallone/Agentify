@@ -5,8 +5,12 @@ import { Button, Text, TextInput } from "react-native-paper";
 import { LoadingIndicator } from "../components/Index";
 import firebase from "../database/Firebase";
 import styles from "../assets/styles/Style";
-import { peselValitadion } from "../utils/PeselValidation";
-
+/* import { peselValitadion } from "../utils/PeselValidation";
+import { emailValidation } from "../utils/EmailValidation";
+import { phoneValidation } from "../utils/PhoneValidation";
+import { postalValidation } from "../utils/PostalValidation";
+ */
+import { peselValitadion, postalValidation, phoneValidation, emailValidation } from "../utils/Validations";
 export default class AddClient extends Component {
   constructor() {
     super();
@@ -42,6 +46,12 @@ export default class AddClient extends Component {
       alert("Uzupełnij wszystkie pola!");
     } else if (peselValitadion(this.state.PESEL) == false) {
       alert("Wprowadz prawidłowy PESEL!");
+    } else if (emailValidation(this.state.email) == false) {
+      alert("Wprowadz prawidłowy adres email!");
+    } else if (phoneValidation(this.state.phone_number) == false) {
+      alert("Wprowadz prawidłowy numer telefonu!");
+    } else if (postalValidation(this.state.post_code) == false) {
+      alert("Wprowadz prawidłowy kod pocztowy!");
     } else {
       firebase
         .firestore()
@@ -59,8 +69,8 @@ export default class AddClient extends Component {
         })
         .then(
           (docRef) => console.log("Added client with ID:", docRef.id),
-          (this.state = this.resetState(this.getInitialState())),
-          alert("Dodano klienta!")
+          alert(`Dodano klienta ${this.state.name} ${this.state.surname}!`),
+          (this.state = this.resetState(this.getInitialState()))
         )
         .catch((error) => console.error("Error adding client!", error));
     }
@@ -92,7 +102,7 @@ export default class AddClient extends Component {
           placeholder="Nazwisko"
           autoCapitalize="words"
           value={this.state.surname}
-          //right={<TextInput.Icon name="account" disabled={true} />}
+          right={<TextInput.Icon name="account" disabled={true} />}
           onChangeText={(val) => this.updateInputVal(val, "surname")}
         />
         <TextInput
@@ -101,7 +111,7 @@ export default class AddClient extends Component {
           keyboardType="phone-pad"
           maxLength={11}
           value={this.state.PESEL}
-          //right={<TextInput.Icon name="account" disabled={true} />}
+          right={<TextInput.Icon name="identifier" disabled={true} />}
           onChangeText={(val) => this.updateInputVal(val, "PESEL")}
         />
         <TextInput
@@ -121,32 +131,33 @@ export default class AddClient extends Component {
           keyboardType="phone-pad"
           maxLength={9}
           value={this.state.phone_number}
-          //right={<TextInput.Icon name="account" disabled={true} />}
+          right={<TextInput.Icon name="cellphone-android" disabled={true} />}
           onChangeText={(val) => this.updateInputVal(val, "phone_number")}
         />
         <TextInput
           style={{ marginTop: 5 }}
           placeholder="Kod pocztowy"
           keyboardType="phone-pad"
+          maxLength={6}
           value={this.state.post_code}
-          //right={<TextInput.Icon name="key-change" disabled={true} />}
+          right={<TextInput.Icon name="postage-stamp" disabled={true} />}
           onChangeText={(val) => this.updateInputVal(val, "post_code")}
         />
         <TextInput
           style={{ marginTop: 5 }}
           placeholder="Miasto"
           value={this.state.city}
-          //right={<TextInput.Icon name="key-change" disabled={true} />}
+          right={<TextInput.Icon name="city" disabled={true} />}
           onChangeText={(val) => this.updateInputVal(val, "city")}
         />
         <TextInput
           style={{ marginTop: 5 }}
           placeholder="Adres"
           value={this.state.adress}
-          //right={<TextInput.Icon name="key-change" disabled={true} />}
+          right={<TextInput.Icon name="information-variant" disabled={true} />}
           onChangeText={(val) => this.updateInputVal(val, "adress")}
         />
-        <Button onPress={() => this.saveNewClient()}>Dodaj klienta</Button>
+        <Button style={{marginTop: 5}} mode={"contained"} onPress={() => this.saveNewClient()}>Dodaj klienta</Button>
       </View>
     );
   }
