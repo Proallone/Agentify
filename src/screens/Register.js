@@ -86,6 +86,7 @@ export default class Register extends Component {
             source={require("../assets/images/Agentify_column_logo.png")}
           />
         </View>
+        <View style={{ flex: 5, justifyContent: "center" }}>
         <TextInput
           style={style.inputStyle}
           placeholder="Imię i nazwisko..."
@@ -132,10 +133,13 @@ export default class Register extends Component {
           text={"Zarejestruj"}
           function={this.registerUser.bind()}
         />
+        </View>
+        <View style={{ flex: 1, justifyContent: "flex-end" }}>
         <TextButton
           text={"Posiadasz już konto? Zaloguj się"}
           function={this.loginRedirect.bind()}
         />
+        </View>
       </View>
     );
   }

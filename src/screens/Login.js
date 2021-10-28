@@ -94,29 +94,17 @@ export default class Login extends Component {
           <ContainedButton
             text={"Zaloguj"}
             function={this.userLogin.bind()}
-          ></ContainedButton>
+          />
         </View>
         <View style={{ flex: 1, justifyContent: "flex-end" }}>
           <TextButton
             text={"Zarejestruj się"}
             function={this.registerRedirect.bind()}
           />
-          {/* <Button
-            style={{ marginTop: 5 }}
-            onPress={() => this.props.navigation.navigate("Register")}
-          >
-            Zarejestruj się
-          </Button> */}
           <TextButton
             text={"Przypomnij hasło"}
             function={this.resetRedirect.bind()}
           />
-          {/* <Button
-            style={{ marginTop: 5 }}
-            onPress={() => this.props.navigation.navigate("Reset")}
-          >
-            Przypomnij hasło
-          </Button> */}
         </View>
       </View>
     );
