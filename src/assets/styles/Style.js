@@ -10,6 +10,7 @@ const style = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    alignContent:"center",
     padding: 35,
     backgroundColor: colors.white,
     paddingTop:StatusBar.currentHeight

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, StyleSheet, StatusBar } from "react-native";
 import { Button, Text, TextInput } from "react-native-paper";
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 
 import { LoadingIndicator } from "../components/Index";
 import ContainedButton from "../components/ContainedButton";
@@ -88,7 +89,7 @@ export default class AddClient extends Component {
       return <LoadingIndicator />;
     }
     return (
-      <View style={styles.mainContainer}>
+      <KeyboardAwareScrollView style={styles.mainContainer}>
         <View style={styles.inputContainer}>
           <TextInput
             style={{ marginTop: 5 }}
@@ -171,19 +172,18 @@ export default class AddClient extends Component {
             function={this.saveNewClient.bind()}
           ></ContainedButton>
         </View>
-      </View>
+        </KeyboardAwareScrollView>
     );
   }
 }
 const styles = StyleSheet.create({
   mainContainer: {
-    paddingTop: StatusBar.currentHeight,
     backgroundColor: colors.white,
     flex: 1,
   },
   inputContainer: {
     flex: 1,
-    padding: 5,
+    padding: 10,
     alignContent: "flex-start",
   },
 });
