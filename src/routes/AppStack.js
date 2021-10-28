@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Main from "../screens/Main";
 import AddClient from "../screens/AddClient";
 import AddDoc from "../screens/AddDoc";
+import Settings from "../screens/Settings"
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,11 @@ export default function AppStack  () {
             name="AddDoc"
             component={AddDoc}
             options={{ title: "Dodaj dokument"}}
+          />
+          <Stack.Screen
+            name="Settings"
+            component={Settings}
+            options={{ title: "Ustawienia"}}
           />
         </Stack.Navigator>
   );

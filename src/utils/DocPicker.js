@@ -1,5 +1,5 @@
 import * as DocumentPicker from "expo-document-picker";
-import saveDocument from "./FirebaseUploadDoc";
+import saveDocument from "../services/FirebaseUploadDoc";
 
 export const addDocument = async () => {
   const result = await DocumentPicker.getDocumentAsync({

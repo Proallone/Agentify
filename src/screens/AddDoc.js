@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import { Button, Text, TextInput, List } from "react-native-paper";
 import styles from "../assets/styles/Style";
-import { addDocument } from "../services/DocPicker";
+import { addDocument } from "../utils/DocPicker";
 
 export default class AddDoc extends Component {
   constructor() {
