@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import { View, Image, StatusBar } from "react-native";
 import { TextInput } from "react-native-paper";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import {
   LoadingIndicator,
@@ -84,68 +85,66 @@ export default class Register extends Component {
           style={{
             flex: 5,
             justifyContent: "center",
-            paddingTop: 2 * StatusBar.currentHeight,
+            paddingTop: StatusBar.currentHeight,
           }}
         >
-          <View style={{ alignItems: "center" }}>
-            <Image
-              style={style.logo}
-              source={require("../assets/images/Agentify_column_logo.png")}
+          <KeyboardAwareScrollView>
+            <View style={{alignItems: "center" }}>
+              <Image
+                style={style.logo}
+                source={require("../assets/images/Agentify_column_logo.png")}
+              />
+            </View>
+            <TextInput
+              style={style.inputStyle}
+              placeholder="Imię i nazwisko..."
+              autoFocus={true}
+              autoCapitalize="words"
+              value={this.state.displayName}
+              right={<TextInput.Icon name="account" disabled={true} />}
+              onChangeText={(val) => this.updateInputVal(val, "displayName")}
             />
-          </View>
-          <TextInput
-            style={style.inputStyle}
-            placeholder="Imię i nazwisko..."
-            autoFocus={true}
-            autoCapitalize="words"
-            textContentType="name"
-            value={this.state.displayName}
-            right={<TextInput.Icon name="account" disabled={true} />}
-            onChangeText={(val) => this.updateInputVal(val, "displayName")}
-          />
-          <TextInput
-            style={{ marginTop: 10 }}
-            placeholder="Email..."
-            value={this.state.email}
-            autoCompleteType="email"
-            autoCapitalize="none"
-            textContentType="emailAddress"
-            keyboardType="email-address"
-            right={<TextInput.Icon name="at" disabled={true} />}
-            onChangeText={(val) => this.updateInputVal(val, "email")}
-          />
-          <TextInput
-            style={{ marginTop: 10 }}
-            placeholder="Hasło..."
-            autoCapitalize="none"
-            autoCorrect={false}
-            textContentType="password"
-            value={this.state.password}
-            right={<TextInput.Icon name="key" disabled={true} />}
-            onChangeText={(val) => this.updateInputVal(val, "password")}
-            secureTextEntry={true}
-          />
-          <TextInput
-            style={{ marginTop: 10 }}
-            placeholder="Powtórz hasło..."
-            value={this.state.passwordConfrimation}
-            right={<TextInput.Icon name="key-change" disabled={true} />}
-            onChangeText={(val) =>
-              this.updateInputVal(val, "passwordConfirmation")
-            }
-            secureTextEntry={true}
-          />
-          <ContainedButton
-            text={"Zarejestruj"}
-            function={this.registerUser.bind()}
-          />
-        </View>
-
-        <View style={{ flex: 1, justifyContent: "flex-end" }}>
-          <TextButton
-            text={"Posiadasz już konto? Zaloguj się"}
-            function={this.loginRedirect.bind()}
-          />
+            <TextInput
+              style={{ marginTop: 10 }}
+              placeholder="Email..."
+              value={this.state.email}
+              autoCompleteType="email"
+              autoCapitalize="none"
+              keyboardType="email-address"
+              right={<TextInput.Icon name="at" disabled={true} />}
+              onChangeText={(val) => this.updateInputVal(val, "email")}
+            />
+            <TextInput
+              style={{ marginTop: 10 }}
+              placeholder="Hasło..."
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={this.state.password}
+              right={<TextInput.Icon name="key" disabled={true} />}
+              onChangeText={(val) => this.updateInputVal(val, "password")}
+              secureTextEntry={true}
+            />
+            <TextInput
+              style={{ marginTop: 10 }}
+              placeholder="Powtórz hasło..."
+              value={this.state.passwordConfrimation}
+              right={<TextInput.Icon name="key-change" disabled={true} />}
+              onChangeText={(val) =>
+                this.updateInputVal(val, "passwordConfirmation")
+              }
+              secureTextEntry={true}
+            />
+            <ContainedButton
+              text={"Zarejestruj"}
+              function={this.registerUser.bind()}
+            />
+            <View style={{justifyContent: "flex-end" }}>
+              <TextButton
+                text={"Posiadasz już konto? Zaloguj się"}
+                function={this.loginRedirect.bind()}
+              />
+            </View>
+          </KeyboardAwareScrollView>
         </View>
       </View>
     );
