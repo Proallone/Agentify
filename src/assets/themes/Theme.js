@@ -6,7 +6,7 @@ import colors from "../colors/Colors";
 const Theme = {
   ...DefaultTheme,
   fonts: configureFonts(fontConfig),
-  roundness: 30,
+  roundness: 20,
   colors: {
     ...DefaultTheme.colors,
     primary: colors.primary,

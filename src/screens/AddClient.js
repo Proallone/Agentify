@@ -1,16 +1,17 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View, StyleSheet, StatusBar } from "react-native";
 import { Button, Text, TextInput } from "react-native-paper";
 
 import { LoadingIndicator } from "../components/Index";
+import ContainedButton from "../components/ContainedButton";
 import firebase from "../database/Firebase";
-import styles from "../assets/styles/Style";
-/* import { peselValitadion } from "../utils/PeselValidation";
-import { emailValidation } from "../utils/EmailValidation";
-import { phoneValidation } from "../utils/PhoneValidation";
-import { postalValidation } from "../utils/PostalValidation";
- */
-import { peselValitadion, postalValidation, phoneValidation, emailValidation } from "../utils/Validations";
+import colors from "../assets/colors/Colors";
+import {
+  peselValitadion,
+  postalValidation,
+  phoneValidation,
+  emailValidation,
+} from "../utils/Validations";
 export default class AddClient extends Component {
   constructor() {
     super();
@@ -87,78 +88,102 @@ export default class AddClient extends Component {
       return <LoadingIndicator />;
     }
     return (
-      <View style={styles.container}>
-        <TextInput
-          style={{ marginTop: 5 }}
-          placeholder="Imię"
-          autoFocus={true}
-          autoCapitalize="words"
-          value={this.state.name}
-          right={<TextInput.Icon name="account" disabled={true} />}
-          onChangeText={(val) => this.updateInputVal(val, "name")}
-        />
-        <TextInput
-          style={{ marginTop: 5 }}
-          placeholder="Nazwisko"
-          autoCapitalize="words"
-          value={this.state.surname}
-          right={<TextInput.Icon name="account" disabled={true} />}
-          onChangeText={(val) => this.updateInputVal(val, "surname")}
-        />
-        <TextInput
-          style={{ marginTop: 5 }}
-          placeholder="PESEL"
-          keyboardType="phone-pad"
-          maxLength={11}
-          value={this.state.PESEL}
-          right={<TextInput.Icon name="identifier" disabled={true} />}
-          onChangeText={(val) => this.updateInputVal(val, "PESEL")}
-        />
-        <TextInput
-          style={{ marginTop: 5 }}
-          placeholder="Email"
-          value={this.state.email}
-          autoCompleteType="email"
-          autoCapitalize="none"
-          keyboardType="email-address"
-          right={<TextInput.Icon name="at" disabled={true} />}
-          onChangeText={(val) => this.updateInputVal(val, "email")}
-        />
-        <TextInput
-          style={{ marginTop: 5 }}
-          placeholder="Telefon"
-          dataDetectorTypes={"phoneNumber"}
-          keyboardType="phone-pad"
-          maxLength={9}
-          value={this.state.phone_number}
-          right={<TextInput.Icon name="cellphone-android" disabled={true} />}
-          onChangeText={(val) => this.updateInputVal(val, "phone_number")}
-        />
-        <TextInput
-          style={{ marginTop: 5 }}
-          placeholder="Kod pocztowy"
-          keyboardType="phone-pad"
-          maxLength={6}
-          value={this.state.post_code}
-          right={<TextInput.Icon name="postage-stamp" disabled={true} />}
-          onChangeText={(val) => this.updateInputVal(val, "post_code")}
-        />
-        <TextInput
-          style={{ marginTop: 5 }}
-          placeholder="Miasto"
-          value={this.state.city}
-          right={<TextInput.Icon name="city" disabled={true} />}
-          onChangeText={(val) => this.updateInputVal(val, "city")}
-        />
-        <TextInput
-          style={{ marginTop: 5 }}
-          placeholder="Adres"
-          value={this.state.adress}
-          right={<TextInput.Icon name="information-variant" disabled={true} />}
-          onChangeText={(val) => this.updateInputVal(val, "adress")}
-        />
-        <Button style={{marginTop: 5}} mode={"contained"} onPress={() => this.saveNewClient()}>Dodaj klienta</Button>
+      <View style={styles.mainContainer}>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={{ marginTop: 5 }}
+            placeholder="Imię"
+            autoFocus={true}
+            maxLength={20}
+            autoCapitalize="words"
+            value={this.state.name}
+            right={<TextInput.Icon name="account" disabled={true} />}
+            onChangeText={(val) => this.updateInputVal(val, "name")}
+          />
+          <TextInput
+            style={{ marginTop: 5 }}
+            placeholder="Nazwisko"
+            autoCapitalize="words"
+            maxLength={20}
+            value={this.state.surname}
+            right={<TextInput.Icon name="account" disabled={true} />}
+            onChangeText={(val) => this.updateInputVal(val, "surname")}
+          />
+          <TextInput
+            style={{ marginTop: 5 }}
+            placeholder="PESEL"
+            keyboardType="phone-pad"
+            maxLength={11}
+            value={this.state.PESEL}
+            right={<TextInput.Icon name="identifier" disabled={true} />}
+            onChangeText={(val) => this.updateInputVal(val, "PESEL")}
+          />
+          <TextInput
+            style={{ marginTop: 5 }}
+            placeholder="Email"
+            value={this.state.email}
+            maxLength={30}
+            autoCompleteType="email"
+            autoCapitalize="none"
+            keyboardType="email-address"
+            right={<TextInput.Icon name="at" disabled={true} />}
+            onChangeText={(val) => this.updateInputVal(val, "email")}
+          />
+          <TextInput
+            style={{ marginTop: 5 }}
+            placeholder="Telefon"
+            dataDetectorTypes={"phoneNumber"}
+            keyboardType="phone-pad"
+            maxLength={9}
+            value={this.state.phone_number}
+            right={<TextInput.Icon name="cellphone-android" disabled={true} />}
+            onChangeText={(val) => this.updateInputVal(val, "phone_number")}
+          />
+          <TextInput
+            style={{ marginTop: 5 }}
+            placeholder="Kod pocztowy"
+            keyboardType="phone-pad"
+            maxLength={6}
+            value={this.state.post_code}
+            right={<TextInput.Icon name="postage-stamp" disabled={true} />}
+            onChangeText={(val) => this.updateInputVal(val, "post_code")}
+          />
+          <TextInput
+            style={{ marginTop: 5 }}
+            placeholder="Miasto"
+            maxLength={20}
+            value={this.state.city}
+            right={<TextInput.Icon name="city" disabled={true} />}
+            onChangeText={(val) => this.updateInputVal(val, "city")}
+          />
+          <TextInput
+            style={{ marginTop: 5 }}
+            placeholder="Adres"
+            maxLength={40}
+            value={this.state.adress}
+            right={
+              <TextInput.Icon name="information-variant" disabled={true} />
+            }
+            onChangeText={(val) => this.updateInputVal(val, "adress")}
+          />
+          <ContainedButton
+            text={"Dodaj klienta"}
+            function={this.saveNewClient.bind()}
+          ></ContainedButton>
+        </View>
       </View>
     );
   }
 }
+const styles = StyleSheet.create({
+  mainContainer: {
+    paddingTop: StatusBar.currentHeight,
+    backgroundColor: colors.white,
+    flex: 1,
+  },
+  inputContainer: {
+    flex: 1,
+    padding: 5,
+    alignContent: "flex-start",
+  },
+});

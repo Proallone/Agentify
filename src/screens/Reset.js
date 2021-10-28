@@ -1,11 +1,12 @@
 /* ŻRÓDŁO https://reactnativemaster.com/react-native-login-screen-tutorial/ */
 
-import React,{ Component } from "react";
+import React, { Component } from "react";
 import { Button, TextInput } from "react-native-paper";
 import { View, Image } from "react-native";
 
 import { style } from "../assets/styles/Index";
 import firebase from "../database/Firebase";
+import { ContainedButton } from "../components/Index";
 
 export default class Reset extends Component {
   state = {
@@ -48,9 +49,8 @@ export default class Reset extends Component {
           right={<TextInput.Icon name="at" disabled={true} />}
           onChangeText={(text) => this.setState({ email: text })}
         />
-        <Button style={{ marginTop: 5 }} onPress={() => this.resetPassword()}>
-          Zresetuj hasło
-        </Button>
+        <ContainedButton text={"Zresetuj hasło"} function= {this.resetPassword.bind()}/>
+        
       </View>
     );
   }

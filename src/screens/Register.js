@@ -2,11 +2,16 @@
 
 import React, { Component } from "react";
 import { View, Image } from "react-native";
-import { Button, TextInput } from "react-native-paper";
+import { TextInput } from "react-native-paper";
 
-import { LoadingIndicator } from "../components/Index";
+import {
+  LoadingIndicator,
+  ContainedButton,
+  TextButton,
+} from "../components/Index";
 import firebase from "../database/Firebase";
 import { style } from "../assets/styles/Index";
+
 export default class Register extends Component {
   constructor() {
     super();
@@ -65,6 +70,10 @@ export default class Register extends Component {
     }
   };
 
+  loginRedirect = () => {
+    this.props.navigation.navigate("Login");
+  };
+
   render() {
     if (this.state.isLoading) {
       return <LoadingIndicator />;
@@ -119,15 +128,14 @@ export default class Register extends Component {
           }
           secureTextEntry={true}
         />
-        <Button style={{ marginTop: 5 }} onPress={() => this.registerUser()}>
-          Zarejestruj
-        </Button>
-        <Button
-          style={{ marginTop: 5 }}
-          onPress={() => this.props.navigation.navigate("Login")}
-        >
-          Posiadasz już konto? Zaloguj się
-        </Button>
+        <ContainedButton
+          text={"Zarejestruj"}
+          function={this.registerUser.bind()}
+        />
+        <TextButton
+          text={"Posiadasz już konto? Zaloguj się"}
+          function={this.loginRedirect.bind()}
+        />
       </View>
     );
   }

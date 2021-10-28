@@ -3,12 +3,11 @@
 
 import React, { Component } from "react";
 import { Image, View } from "react-native";
-import { Button, TextInput } from "react-native-paper";
+import { TextInput } from "react-native-paper";
 
 import firebase from "../database/Firebase";
 import styles from "../assets/styles/Style";
-import { LoadingIndicator } from "../components/Index";
-import colors from "../assets/colors/Colors";
+import { LoadingIndicator, ContainedButton, TextButton } from "../components/Index";
 
 export default class Login extends Component {
   constructor() {
@@ -55,56 +54,69 @@ export default class Login extends Component {
     }
   };
 
+  registerRedirect = () => {
+    this.props.navigation.navigate("Register");
+  };
+
+  resetRedirect = () => {
+    this.props.navigation.navigate("Reset");
+  };
+
   render() {
     if (this.state.isLoading) {
       return <LoadingIndicator />;
     }
     return (
       <View style={styles.container}>
-        <View style={{flex:5, justifyContent: "center"}}>
-        <View style={{ alignItems: "center" }}>
-          <Image
-            style={styles.logo}
-            source={require("../assets/images/Agentify_column_logo.png")}
+        <View style={{ flex: 5, justifyContent: "center" }}>
+          <View style={{ alignItems: "center" }}>
+            <Image
+              style={styles.logo}
+              source={require("../assets/images/Agentify_column_logo.png")}
+            />
+          </View>
+          <TextInput
+            icon="at"
+            placeholder="Email..."
+            value={this.state.email}
+            right={<TextInput.Icon name="at" disabled={true} />}
+            onChangeText={(val) => this.updateInputVal(val, "email")}
           />
+          <TextInput
+            style={{ marginTop: 10 }}
+            placeholder="Hasło..."
+            value={this.state.password}
+            right={<TextInput.Icon name="key" disabled={true} />}
+            onChangeText={(val) => this.updateInputVal(val, "password")}
+            maxLength={15}
+            secureTextEntry={true}
+          />
+          <ContainedButton
+            text={"Zaloguj"}
+            function={this.userLogin.bind()}
+          ></ContainedButton>
         </View>
-        <TextInput
-          icon="at"
-          placeholder="Email..."
-          value={this.state.email}
-          right={<TextInput.Icon name="at" disabled={true} />}
-          onChangeText={(val) => this.updateInputVal(val, "email")}
-        />
-        <TextInput
-          style={{ marginTop: 10 }}
-          placeholder="Hasło..."
-          value={this.state.password}
-          right={<TextInput.Icon name="key" disabled={true} />}
-          onChangeText={(val) => this.updateInputVal(val, "password")}
-          maxLength={15}
-          secureTextEntry={true}
-        />
-        <Button
-          mode={"contained"}
-          style={{ marginTop: 5 }}
-          onPress={() => this.userLogin()}
-        >
-          Zaloguj
-        </Button>
-        </View>
-        <View style={{ flex: 1,justifyContent: "flex-end"}}>
-        <Button
-          style={{ marginTop: 5 }}
-          onPress={() => this.props.navigation.navigate("Register")}
-        >
-          Zarejestruj się
-        </Button>
-        <Button
-          style={{ marginTop: 5 }}
-          onPress={() => this.props.navigation.navigate("Reset")}
-        >
-          Przypomnij hasło
-        </Button>
+        <View style={{ flex: 1, justifyContent: "flex-end" }}>
+          <TextButton
+            text={"Zarejestruj się"}
+            function={this.registerRedirect.bind()}
+          />
+          {/* <Button
+            style={{ marginTop: 5 }}
+            onPress={() => this.props.navigation.navigate("Register")}
+          >
+            Zarejestruj się
+          </Button> */}
+          <TextButton
+            text={"Przypomnij hasło"}
+            function={this.resetRedirect.bind()}
+          />
+          {/* <Button
+            style={{ marginTop: 5 }}
+            onPress={() => this.props.navigation.navigate("Reset")}
+          >
+            Przypomnij hasło
+          </Button> */}
         </View>
       </View>
     );
