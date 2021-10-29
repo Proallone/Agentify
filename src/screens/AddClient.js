@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { View, StyleSheet, StatusBar } from "react-native";
 import { Button, Text, TextInput } from "react-native-paper";
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { LoadingIndicator } from "../components/Index";
 import ContainedButton from "../components/ContainedButton";
 import firebase from "../database/Firebase";
 import colors from "../assets/colors/Colors";
+import { Client, clientConverter } from "../models/Client";
 import {
   peselValitadion,
   postalValidation,
@@ -20,14 +21,14 @@ export default class AddClient extends Component {
   }
   /*state reset ref https://stackoverflow.com/a/43947937/14476262 */
   getInitialState = () => ({
-    name: "",
-    surname: "",
-    PESEL: "",
-    email: "",
-    phone_number: "",
-    post_code: "",
-    city: "",
-    adress: "",
+    name: "Vaerel",
+    surname: "ASas",
+    PESEL: "98062010110",
+    email: "23@p.pl",
+    phone_number: "123456789",
+    post_code: "47-100",
+    city: "sda",
+    address: "hwllo",
   });
 
   resetState = () => {
@@ -43,7 +44,7 @@ export default class AddClient extends Component {
       this.state.phone_number === "" ||
       this.state.post_code === "" ||
       this.state.city === "" ||
-      this.state.adress === ""
+      this.state.address === ""
     ) {
       alert("Uzupełnij wszystkie pola!");
     } else if (peselValitadion(this.state.PESEL) == false) {
@@ -55,27 +56,30 @@ export default class AddClient extends Component {
     } else if (postalValidation(this.state.post_code) == false) {
       alert("Wprowadz prawidłowy kod pocztowy!");
     } else {
-      firebase
+       firebase
         .firestore()
         .collection("clients_" + firebase.auth().currentUser.uid)
-        .add({
-          name: this.state.name,
-          surname: this.state.surname,
-          PESEL: parseInt(this.state.PESEL),
-          email: this.state.email,
-          phone_number: parseInt(this.state.phone_number),
-          post_code: this.state.post_code,
-          city: this.state.city,
-          adress: this.state.adress,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        })
+        .withConverter(clientConverter)
+        .add(
+          new Client(
+            this.state.name,
+            this.state.surname,
+            this.state.PESEL,
+            this.state.email,
+            this.state.phone_number,
+            this.state.post_code,
+            this.state.city,
+            this.state.address,
+            firebase.firestore.FieldValue.serverTimestamp(),
+          )
+        )
         .then(
           (docRef) => console.log("Added client with ID:", docRef.id),
           alert(`Dodano klienta ${this.state.name} ${this.state.surname}!`),
           (this.state = this.resetState(this.getInitialState()))
         )
-        .catch((error) => console.error("Error adding client!", error));
-    }
+        .catch((error) => console.error("Error adding client!", error)); 
+    } 
   };
 
   updateInputVal = (val, prop) => {
@@ -161,18 +165,18 @@ export default class AddClient extends Component {
             style={{ marginTop: 5 }}
             placeholder="Adres"
             maxLength={40}
-            value={this.state.adress}
+            value={this.state.address}
             right={
               <TextInput.Icon name="information-variant" disabled={true} />
             }
-            onChangeText={(val) => this.updateInputVal(val, "adress")}
+            onChangeText={(val) => this.updateInputVal(val, "address")}
           />
           <ContainedButton
             text={"Dodaj klienta"}
             function={this.saveNewClient.bind()}
           ></ContainedButton>
         </View>
-        </KeyboardAwareScrollView>
+      </KeyboardAwareScrollView>
     );
   }
 }

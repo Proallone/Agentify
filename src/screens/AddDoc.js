@@ -9,27 +9,23 @@ export default class AddDoc extends Component {
     super();
   }
 
+
   render() {
     return (
       <View style={styles.container}>
-        {/*   <List.Section title="Accordions">
-          <List.Accordion
-            title="Uncontrolled Accordion"
-            left={(props) => <List.Icon {...props} icon="folder" />}
-          >
-            <List.Item title="First item" />
-            <List.Item title="Second item" />
-          </List.Accordion>
+      {/*   {
+          //this.state.clients.map((item,index)=> (
+          <List.Section>
 
-          <List.Accordion
-            title="Controlled Accordion"
-            left={(props) => <List.Icon {...props} icon="folder" />}
-            expanded={true}
-          >
-            <List.Item title="First item" />
-            <List.Item title="Second item" />
-          </List.Accordion>
-        </List.Section> */}
+              <List.Item
+                title={item.name}
+                key={index}
+                onPress={() => console.log(`Wybrano ${index}`)}
+              />
+  
+          </List.Section>
+          ))
+        } */}
         <Button
           icon={"text-box-search-outline"}
           mode="outlined"

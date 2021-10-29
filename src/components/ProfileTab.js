@@ -1,10 +1,9 @@
 import { colors } from "../assets/colors/Index";
-import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Avatar, Divider, Title, Badge, IconButton } from "react-native-paper";
+import { View,StyleSheet, TouchableOpacity } from "react-native";
+import { Avatar,Title,IconButton } from "react-native-paper";
 import React from "react";
 
 import { openImagePickerAsync } from "../utils/ImagePicker";
-import getDocumentsFirebase from "../services/FirebaseGet";
 
 const ProfileTab = (props) => {
   return (

@@ -140,7 +140,7 @@ export default class Register extends Component {
             />
             <View style={{justifyContent: "flex-end" }}>
               <TextButton
-                text={"Posiadasz już konto? Zaloguj się"}
+                text={"Posiadasz konto? Zaloguj się"}
                 function={this.loginRedirect.bind()}
               />
             </View>

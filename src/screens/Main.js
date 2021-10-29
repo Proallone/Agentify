@@ -67,9 +67,10 @@ export default class Main extends Component {
               justifyContent: "center",
             }}
             mode="outlined"
-            icon={"calendar-month-outline"}
+            icon={"account-search"}
+            onPress={() => this.props.navigation.navigate("SearchClient")}
           >
-            Kalendarz
+            Znajdź klienta
           </Button>
           <Button
            style={styles.buttonStyle}
