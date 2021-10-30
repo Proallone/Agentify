@@ -5,6 +5,7 @@ import React from "react";
 
 import { openImagePickerAsync } from "../utils/ImagePicker";
 import firebase from "../database/Firebase";
+import {firebaseGetDocs} from "../services/FirebaseMethods";
 
 export default class ProfileTab extends React.Component {
   constructor() {
@@ -47,7 +48,7 @@ export default class ProfileTab extends React.Component {
             color={colors.primary}
             style={{
               justifyContent: "space-around",
-            }} /* onPress={()=>getDocumentsFirebase()} */
+            }} onPress={()=>firebaseGetDocs()}
           />
         </View>
       </View>

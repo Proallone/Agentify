@@ -48,13 +48,13 @@ export default class AddClient extends Component {
     ) {
       alert("Uzupełnij wszystkie pola!");
     } else if (peselValitadion(this.state.PESEL) == false) {
-      alert("Wprowadz prawidłowy PESEL!");
+      alert("Wprowadź prawidłowy PESEL!");
     } else if (emailValidation(this.state.email) == false) {
-      alert("Wprowadz prawidłowy adres email!");
+      alert("Wprowadź prawidłowy adres email!");
     } else if (phoneValidation(this.state.phone_number) == false) {
-      alert("Wprowadz prawidłowy numer telefonu!");
+      alert("Wprowadź prawidłowy numer telefonu!");
     } else if (postalValidation(this.state.post_code) == false) {
-      alert("Wprowadz prawidłowy kod pocztowy!");
+      alert("Wprowadź prawidłowy kod pocztowy!");
     } else {
        firebase
         .firestore()

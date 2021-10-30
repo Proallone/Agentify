@@ -7,31 +7,27 @@ import { View, Image } from "react-native";
 import { style } from "../assets/styles/Index";
 import firebase from "../database/Firebase";
 import { ContainedButton } from "../components/Index";
+import { sendResetPasswordEmail } from "../services/FirebaseMethods";
+import { emailValidation } from "../utils/Validations";
 
 export default class Reset extends Component {
-  state = {
-    email: "",
-  };
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+    };
+  }
 
   resetPassword = () => {
     if (this.state.email === "") {
       alert("Wprowadź adres email!");
+    } else if (emailValidation(this.state.email) == false) {
+      alert("Wprowadź prawidłowy adres email!");
     } else {
-      this.setState({
-        isLoading: true,
-      });
-      firebase
-        .auth()
-        .sendPasswordResetEmail(this.state.email)
-        .then(() => {
-          this.setState({ email: "" });
-          alert("Na wskazany adres wysłano wiadomość z resetem hasła");
-          this.props.navigation.navigate("Login");
-        })
-        .catch((error) => {
-          alert(error.message);
-          console.log({ errorMessage: error.message });
-        });
+      sendResetPasswordEmail(this.state.email);
+      this.setState({ email: "" });
+      alert("Na wskazany adres wysłano wiadomość z resetem hasła");
+      this.props.navigation.navigate("Login");
     }
   };
 
@@ -49,8 +45,10 @@ export default class Reset extends Component {
           right={<TextInput.Icon name="at" disabled={true} />}
           onChangeText={(text) => this.setState({ email: text })}
         />
-        <ContainedButton text={"Zresetuj hasło"} function= {this.resetPassword.bind()}/>
-        
+        <ContainedButton
+          text={"Zresetuj hasło"}
+          function={this.resetPassword.bind()}
+        />
       </View>
     );
   }

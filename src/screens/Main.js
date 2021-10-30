@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { ScrollView, StatusBar, StyleSheet, View } from "react-native";
-import { Button, IconButton } from "react-native-paper";
+import { StatusBar, StyleSheet, View } from "react-native";
+import { Button } from "react-native-paper";
 import colors from "../assets/colors/Colors";
 
 import ProfileTab from "../components/ProfileTab";
-import firebase from "../database/Firebase";
 import { firebaseSignOut } from "../services/FirebaseMethods";
 
 export default class Main extends Component {
@@ -13,10 +12,7 @@ export default class Main extends Component {
       // DO POPRAWKIIIIIIIIIIIIIII STYLEE
       <View style={styles.mainContainer}>
         <View style={{ flex: 1, flexDirection: "row" }}>
-          {/* <ProfileTab
-            imageUrl={this.state.profilePicUrl}
-            name={this.state.displayName}
-          /> */}
+
           <ProfileTab />
         </View>
         <View style={styles.buttonsContainer}>
@@ -68,7 +64,7 @@ export default class Main extends Component {
             }}
             icon={"logout"}
             mode="outlined"
-            onPress={() => firebaseSignOut(this.state.uid)}
+            onPress={() => firebaseSignOut()}
           >
             Wyloguj
           </Button>

@@ -4,6 +4,8 @@ import React, { Component } from "react";
 import { View, Image, StatusBar } from "react-native";
 import { TextInput } from "react-native-paper";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { emailValidation } from "../utils/Validations";
+import { registerUserWithEmail } from "../services/FirebaseMethods";
 
 import {
   LoadingIndicator,
@@ -36,38 +38,27 @@ export default class Register extends Component {
       alert("Wprowadź wszystkie dane!");
     } else if (this.state.email === "" || this.state.password === "") {
       alert("Niepełne wszystkie dane!");
+    } else if (emailValidation(this.state.email) == false) {
+      alert("Wprowadź prawidłowy adres email!");
     } else if (this.state.password !== this.state.passwordConfirmation) {
       alert("Hasła nie są takie same!");
     } else {
       this.setState({
         isLoading: true,
       });
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then((res) => {
-          res.user.updateProfile({
-            displayName: this.state.displayName,
-          });
-          console.log("User registered successfully!");
-          this.setState({
-            isLoading: false,
-            displayName: "",
-            email: "",
-            password: "",
-            passwordConfirmation: "",
-          });
-          this.props.navigation.navigate("Login");
-        })
-        .catch((error) => {
-          this.setState({
-            isLoading: false,
-            password: "",
-            passwordConfirmation: "",
-          });
-          console.log({ errorMessage: error.message });
-          alert(error.message);
-        });
+      registerUserWithEmail(
+        this.state.email,
+        this.state.password,
+        this.state.displayName
+      );
+      this.setState({
+        isLoading: false,
+        displayName: "",
+        email: "",
+        password: "",
+        passwordConfirmation: "",
+      });
+      this.loginRedirect();
     }
   };
 
@@ -89,7 +80,7 @@ export default class Register extends Component {
           }}
         >
           <KeyboardAwareScrollView>
-            <View style={{alignItems: "center" }}>
+            <View style={{ alignItems: "center" }}>
               <Image
                 style={style.logo}
                 source={require("../assets/images/Agentify_column_logo.png")}
@@ -138,7 +129,7 @@ export default class Register extends Component {
               text={"Zarejestruj"}
               function={this.registerUser.bind()}
             />
-            <View style={{justifyContent: "flex-end" }}>
+            <View style={{ justifyContent: "flex-end" }}>
               <TextButton
                 text={"Posiadasz konto? Zaloguj się"}
                 function={this.loginRedirect.bind()}
