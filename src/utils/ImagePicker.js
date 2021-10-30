@@ -22,5 +22,6 @@ export const openImagePickerAsync = async () => {
     return;
   }
   console.log(pickerResult);
-  saveUserProfileImage(pickerResult.uri);
+  await saveUserProfileImage(pickerResult.uri);
+  
 };

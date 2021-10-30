@@ -3,37 +3,24 @@ import { ScrollView, StatusBar, StyleSheet, View } from "react-native";
 import { Button, IconButton } from "react-native-paper";
 import colors from "../assets/colors/Colors";
 
-import { ProfileTab} from "../components/Index";
+import ProfileTab from "../components/ProfileTab";
 import firebase from "../database/Firebase";
 import { firebaseSignOut } from "../services/FirebaseMethods";
 
 export default class Main extends Component {
-  constructor() {
-    super();
-    this.state = {
-      uid: "",
-      displayName: "",
-      profilePicUrl: "",
-    };
-  }
-
   render() {
-    this.state = {
-      displayName: firebase.auth().currentUser.displayName,
-      uid: firebase.auth().currentUser.uid,
-      profilePicUrl: firebase.auth().currentUser.photoURL,
-    };
     return (
       // DO POPRAWKIIIIIIIIIIIIIII STYLEE
       <View style={styles.mainContainer}>
-        <View style={{flex: 1, flexDirection: "row"}}>
-          <ProfileTab
+        <View style={{ flex: 1, flexDirection: "row" }}>
+          {/* <ProfileTab
             imageUrl={this.state.profilePicUrl}
             name={this.state.displayName}
-          />
+          /> */}
+          <ProfileTab />
         </View>
         <View style={styles.buttonsContainer}>
-        <Button
+          <Button
             style={styles.buttonStyle}
             contentStyle={{
               width: "100%",
@@ -73,7 +60,7 @@ export default class Main extends Component {
             Znajdź klienta
           </Button>
           <Button
-           style={styles.buttonStyle}
+            style={styles.buttonStyle}
             contentStyle={{
               width: "100%",
               height: "100%",
@@ -99,16 +86,15 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     backgroundColor: colors.white,
     flexDirection: "row",
-    flex:2,
+    flex: 2,
     flexWrap: "wrap",
     alignItems: "flex-start", // if you want to fill rows left to right
     justifyContent: "space-evenly",
-   
   },
   buttonStyle: {
     width: "40%",
     height: 80,
     justifyContent: "center",
-    marginBottom: 20
+    marginBottom: 20,
   },
 });
