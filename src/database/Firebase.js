@@ -13,4 +13,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+/* Ref https://stackoverflow.com/a/67647563 */
+firebase.firestore().settings({ experimentalForceLongPolling: true });
+
 export default firebase;

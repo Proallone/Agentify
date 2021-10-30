@@ -1,14 +1,12 @@
 export class Client {
-    constructor (name, surname, PESEL, email, phone_number, post_code, city, address, timestamp) {
+    constructor (name, surname, PESEL, email, phone_number, post_code) {
         this.name = name;
         this.surname = surname;
         this.PESEL = PESEL;
         this.email = email;
         this.phone_number = phone_number;
         this.post_code = post_code;
-        this.city = city;
-        this.address = address;
-        this.timestamp = timestamp;
+  
     }
 }
 
