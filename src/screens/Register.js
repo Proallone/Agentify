@@ -58,7 +58,7 @@ export default class Register extends Component {
         password: "",
         passwordConfirmation: "",
       });
-      this.loginRedirect();
+      //this.loginRedirect();
     }
   };
 

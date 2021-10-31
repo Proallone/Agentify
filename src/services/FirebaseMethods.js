@@ -1,5 +1,5 @@
 import firebase from "../database/Firebase";
-import { Client, clientConverter } from "../models/Client";
+import { clientConverter } from "../models/Client";
 
 export const firebaseSignOut = () => {
   firebase
@@ -9,6 +9,19 @@ export const firebaseSignOut = () => {
       console.log(`User signed out`);
     })
     .catch((error) => console.log(error.message));
+};
+
+export const firebaseSignIn = (email, password) => {
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((res) => {
+      console.log(`User ${res.user.uid} logged in`);
+    })
+    .catch((error) => {
+      console.log({ errorMessage: error.message });
+      alert(error.message);
+    });
 };
 
 export const firebaseGetDocs = async () => {
@@ -44,6 +57,7 @@ export const registerUserWithEmail = (email, password, username) => {
     .then((res) => {
       res.user.updateProfile({
         displayName: username,
+        photoURL: "https://firebasestorage.googleapis.com/v0/b/asystentagenta-a0d7b.appspot.com/o/default%2Fdefault_profile_image.png?alt=media&token=d4d28168-bc43-4a26-99a7-1d8f629d6fe9",
       });
       console.log(`User ${res.user.uid} registered succesfully`);
     })

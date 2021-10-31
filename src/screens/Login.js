@@ -5,10 +5,14 @@ import React, { Component } from "react";
 import { Image, View } from "react-native";
 import { TextInput } from "react-native-paper";
 
-import firebase from "../database/Firebase";
 import styles from "../assets/styles/Style";
-import { LoadingIndicator, ContainedButton, TextButton } from "../components/Index";
-
+import {
+  LoadingIndicator,
+  ContainedButton,
+  TextButton,
+} from "../components/Index";
+import { firebaseSignIn } from "../services/FirebaseMethods";
+import {emailValidation} from "../utils/Validations"
 export default class Login extends Component {
   constructor() {
     super();
@@ -30,26 +34,18 @@ export default class Login extends Component {
       alert("Wprowadź wszystkie dane!");
     } else if (this.state.email === "" || this.state.password === "") {
       alert("Niepełne dane logowania!");
+    } else if (emailValidation(this.state.email) == false) {
+      alert("Wprowadź poprawny adres email!");
     } else {
       this.setState({
         isLoading: true,
       });
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then((res) => {
-          console.log(`User ${res.user.uid} logged in`);
-          this.setState({
-            isLoading: false,
-            email: "",
-            password: "",
-          });
-        })
-        .catch((error) => {
-          this.setState({ isLoading: false, password: "" });
-          console.log({ errorMessage: error.message });
-          alert(error.message);
-        });
+      firebaseSignIn(this.state.email, this.state.password);
+      this.setState({
+        isLoading: false,
+        email: "",
+        password: "",
+      });
     }
   };
 
@@ -90,10 +86,7 @@ export default class Login extends Component {
             maxLength={15}
             secureTextEntry={true}
           />
-          <ContainedButton
-            text={"Zaloguj"}
-            function={this.userLogin.bind()}
-          />
+          <ContainedButton text={"Zaloguj"} function={this.userLogin.bind()} />
         </View>
         <View style={{ flex: 1, justifyContent: "flex-end" }}>
           <TextButton

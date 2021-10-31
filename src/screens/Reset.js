@@ -5,16 +5,17 @@ import { Button, TextInput } from "react-native-paper";
 import { View, Image } from "react-native";
 
 import { style } from "../assets/styles/Index";
-import firebase from "../database/Firebase";
 import { ContainedButton } from "../components/Index";
 import { sendResetPasswordEmail } from "../services/FirebaseMethods";
 import { emailValidation } from "../utils/Validations";
+import { LoadingIndicator } from "../components/Index";
 
 export default class Reset extends Component {
   constructor() {
     super();
     this.state = {
       email: "",
+      isLoading: false,
     };
   }
 
@@ -24,14 +25,18 @@ export default class Reset extends Component {
     } else if (emailValidation(this.state.email) == false) {
       alert("Wprowadź prawidłowy adres email!");
     } else {
+      this.setState({ isLoading: true });
       sendResetPasswordEmail(this.state.email);
-      this.setState({ email: "" });
+      this.setState({ email: "", isLoading: false });
       alert("Na wskazany adres wysłano wiadomość z resetem hasła");
       this.props.navigation.navigate("Login");
     }
   };
 
   render() {
+    if (this.state.isLoading) {
+      return <LoadingIndicator />;
+    }
     return (
       <View style={style.container}>
         <View style={{ alignItems: "center" }}>
