@@ -12,7 +12,6 @@ export default class Main extends Component {
       // DO POPRAWKIIIIIIIIIIIIIII STYLEE
       <View style={styles.mainContainer}>
         <View style={{ flex: 1, flexDirection: "row" }}>
-
           <ProfileTab />
         </View>
         <View style={styles.buttonsContainer}>

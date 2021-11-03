@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View } from "react-native";
-import { Button, Text, TextInput, List } from "react-native-paper";
+import { Button } from "react-native-paper";
 import styles from "../assets/styles/Style";
 import { addDocument } from "../utils/DocPicker";
 
@@ -9,11 +9,10 @@ export default class AddDoc extends Component {
     super();
   }
 
-
   render() {
     return (
       <View style={styles.container}>
-      {/*   {
+        {/*   {
           //this.state.clients.map((item,index)=> (
           <List.Section>
 

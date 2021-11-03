@@ -12,7 +12,6 @@ import {
   ContainedButton,
   TextButton,
 } from "../components/Index";
-import firebase from "../database/Firebase";
 import { style } from "../assets/styles/Index";
 
 export default class Register extends Component {
@@ -58,7 +57,6 @@ export default class Register extends Component {
         password: "",
         passwordConfirmation: "",
       });
-      //this.loginRedirect();
     }
   };
 

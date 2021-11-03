@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { View, StyleSheet, StatusBar } from "react-native";
-import { Button, Text, TextInput } from "react-native-paper";
+import { View, StyleSheet } from "react-native";
+import { TextInput } from "react-native-paper";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { LoadingIndicator } from "../components/Index";

@@ -57,7 +57,8 @@ export const registerUserWithEmail = (email, password, username) => {
     .then((res) => {
       res.user.updateProfile({
         displayName: username,
-        photoURL: "https://firebasestorage.googleapis.com/v0/b/asystentagenta-a0d7b.appspot.com/o/default%2Fdefault_profile_image.png?alt=media&token=d4d28168-bc43-4a26-99a7-1d8f629d6fe9",
+        photoURL:
+          "https://firebasestorage.googleapis.com/v0/b/asystentagenta-a0d7b.appspot.com/o/default%2Fdefault_profile_image.png?alt=media&token=d4d28168-bc43-4a26-99a7-1d8f629d6fe9",
       });
       console.log(`User ${res.user.uid} registered succesfully`);
     })
