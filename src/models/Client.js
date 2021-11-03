@@ -10,7 +10,8 @@ export class Client {
     post_code,
     city,
     address,
-    timestamp
+    timestamp,
+    id,
   ) {
     this.name = name;
     this.surname = surname;
@@ -21,6 +22,7 @@ export class Client {
     this.city = city;
     this.address = address;
     this.timestamp = timestamp;
+    this.id = 0; //default, id is generated on firebase server
   }
 }
 
@@ -37,6 +39,7 @@ export var clientConverter = {
       city: client.city,
       address: client.address,
       timestamp: client.timestamp,
+      id: client.id,
     };
   },
   fromFirestore: function (snapshot, options) {
@@ -50,7 +53,8 @@ export var clientConverter = {
       data.post_code,
       data.city,
       data.address,
-      data.timestamp
+      data.timestamp,
+      data.id,
     );
   },
 };
