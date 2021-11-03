@@ -11,6 +11,7 @@ export class Client {
         this.city = city;
         this.address = address;
         this.timestamp = timestamp;
+        this.id = 0;
     }
 }
 
@@ -31,6 +32,6 @@ export var clientConverter = {
     },
     fromFirestore: function(snapshot, options){
         const data = snapshot.data(options);
-        return new Client(data.name, data.surname, data.PESEL, data.email, data.phone_number, data.post_code, data.city, data.address, data.timestamp);
+        return new Client(data.name, data.surname, data.PESEL, data.email, data.phone_number, data.post_code, data.city, data.address, data.timestamp, data.id);
     }
 };

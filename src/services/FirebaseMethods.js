@@ -33,6 +33,7 @@ export const firebaseGetDocs = async () => {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         var client = doc.data();
+        client.id = doc.id;
         console.log(client);
       });
     });
