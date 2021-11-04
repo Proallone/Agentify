@@ -25,7 +25,9 @@ export const firebaseSignIn = (email, password) => {
 };
 
 export const firebaseGetDocs = async () => {
-  firebase
+  const clients = [];
+
+  await firebase
     .firestore()
     .collection("clients_" + firebase.auth().currentUser.uid)
     .withConverter(clientConverter)
@@ -34,9 +36,11 @@ export const firebaseGetDocs = async () => {
       querySnapshot.forEach((doc) => {
         var client = doc.data();
         client.id = doc.id;
-        console.log(client);
+        clients.push(client);
       });
     });
+  //console.log(clients);
+  return clients;
 };
 
 export const sendResetPasswordEmail = (email) => {

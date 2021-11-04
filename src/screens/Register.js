@@ -116,7 +116,9 @@ export default class Register extends Component {
             <TextInput
               style={{ marginTop: 10 }}
               placeholder="Powtórz hasło..."
-              value={this.state.passwordConfrimation}
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={this.state.passwordConfirmation}
               right={<TextInput.Icon name="key-change" disabled={true} />}
               onChangeText={(val) =>
                 this.updateInputVal(val, "passwordConfirmation")

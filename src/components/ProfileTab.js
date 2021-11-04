@@ -11,11 +11,19 @@ export default class ProfileTab extends React.Component {
   constructor() {
     super();
     this.state = {
+      isLoading: false,
       userName: firebase.auth().currentUser.displayName,
       uid: firebase.auth().currentUser.uid,
       profileImageUrl: firebase.auth().currentUser.photoURL,
     };
   }
+
+/*   loadingComplete = () => {
+    if (this.state.profileImageUrl === undefined){
+      this.setState({isLoading:true})
+    }
+    this.setState({isLoading:false})
+  } */
 
   changeProfileImage = () => {
     openImagePickerAsync().then(() =>
@@ -26,6 +34,9 @@ export default class ProfileTab extends React.Component {
   };
 
   render() {
+    if (this.state.isLoading) {
+      return <LoadingIndicator />;
+    }
     return (
       <View style={styles.profileTab}>
         <View style={styles.avatarOutline}>

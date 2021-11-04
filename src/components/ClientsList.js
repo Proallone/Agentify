@@ -1,7 +1,7 @@
 import * as React from "react";
 import { List } from "react-native-paper";
 
-const ClientList = () => {
+const ClientList = (props) => {
   const [expanded, setExpanded] = React.useState(true);
 
   const handlePress = () => setExpanded(!expanded);
