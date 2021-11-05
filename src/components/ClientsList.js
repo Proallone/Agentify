@@ -1,10 +1,7 @@
 import * as React from "react";
 import { List } from "react-native-paper";
-import { FlatList } from "react-native";
-import { View } from "react-native";
-import { firebaseGetDocs } from "../services/FirebaseMethods";
 
-const ClientList = () => {
+const ClientList = (props) => {
   const [expanded, setExpanded] = React.useState(true);
 
   const handlePress = () => setExpanded(!expanded);

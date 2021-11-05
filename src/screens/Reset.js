@@ -1,7 +1,7 @@
 /* ŻRÓDŁO https://reactnativemaster.com/react-native-login-screen-tutorial/ */
 
 import React, { Component } from "react";
-import { Button, TextInput } from "react-native-paper";
+import { TextInput } from "react-native-paper";
 import { View, Image } from "react-native";
 
 import { style } from "../assets/styles/Index";
