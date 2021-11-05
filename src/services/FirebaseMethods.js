@@ -24,12 +24,15 @@ export const firebaseSignIn = (email, password) => {
     });
 };
 
-export const firebaseGetDocs = async () => {
+export const getUserClients = async () => {
   const clients = [];
-
-  await firebase
+  const colRef = firebase
     .firestore()
-    .collection("clients_" + firebase.auth().currentUser.uid)
+    .collection("users")
+    .doc(firebase.auth().currentUser.uid)
+    .collection("clients");
+
+  await colRef
     .withConverter(clientConverter)
     .get()
     .then((querySnapshot) => {
@@ -39,7 +42,6 @@ export const firebaseGetDocs = async () => {
         clients.push(client);
       });
     });
-  //console.log(clients);
   return clients;
 };
 

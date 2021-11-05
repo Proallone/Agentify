@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Text, ScrollView, StyleSheet } from "react-native";
 import Constants from "expo-constants";
 import { DataTable } from "react-native-paper";
-import { firebaseGetDocs } from "../services/FirebaseMethods";
+import { getUserClients } from "../services/FirebaseMethods";
 
 export default class ClientSearch extends Component {
   constructor() {
@@ -15,7 +15,7 @@ export default class ClientSearch extends Component {
 
   populateClientsArray = async () => {
     this.setState({
-      clients: await firebaseGetDocs(),
+      clients: await getUserClients(),
     });
   };
 

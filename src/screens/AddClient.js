@@ -56,9 +56,13 @@ export default class AddClient extends Component {
     } else if (postalValidation(this.state.post_code) == false) {
       alert("Wprowadź prawidłowy kod pocztowy!");
     } else {
-       firebase
+      const colRef = firebase
         .firestore()
-        .collection("clients_" + firebase.auth().currentUser.uid)
+        .collection("users")
+        .doc(firebase.auth().currentUser.uid)
+        .collection("clients");
+
+      colRef
         .withConverter(clientConverter)
         .add(
           new Client(
@@ -70,16 +74,19 @@ export default class AddClient extends Component {
             this.state.post_code,
             this.state.city,
             this.state.address,
-            firebase.firestore.FieldValue.serverTimestamp(),
+            firebase.firestore.FieldValue.serverTimestamp()
           )
         )
         .then(
-          (docRef) => console.log("Added client with ID:", docRef.id),
+          (docRef) =>
+            docRef
+              .update({ id: docRef.id })
+              .then(console.log("Added client with ID:", docRef.id)),
           alert(`Dodano klienta ${this.state.name} ${this.state.surname}!`),
           (this.state = this.resetState(this.getInitialState()))
         )
-        .catch((error) => console.error("Error adding client!", error)); 
-    } 
+        .catch((error) => console.error("Error adding client!", error));
+    }
   };
 
   updateInputVal = (val, prop) => {
