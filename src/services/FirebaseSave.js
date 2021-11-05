@@ -10,5 +10,8 @@ const saveMediaToStorage = async (media, path) =>
       .then((task) => task.ref.getDownloadURL())
       .then((downloadURL) => resolve(downloadURL))
       .catch(() => reject());
-  });
-export default saveMediaToStorage;
+  })
+  export default saveMediaToStorage;
+
+
+  

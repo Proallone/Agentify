@@ -12,7 +12,7 @@ import {
   TextButton,
 } from "../components/Index";
 import { firebaseSignIn } from "../services/FirebaseMethods";
-import { emailValidation } from "../utils/Validations";
+import {emailValidation} from "../utils/Validations"
 export default class Login extends Component {
   constructor() {
     super();

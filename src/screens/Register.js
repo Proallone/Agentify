@@ -12,27 +12,20 @@ import {
   ContainedButton,
   TextButton,
 } from "../components/Index";
+import firebase from "../database/Firebase";
 import { style } from "../assets/styles/Index";
 
 export default class Register extends Component {
   constructor() {
     super();
-    this.state = this.getInitialState();
+    this.state = {
+      displayName: "",
+      email: "",
+      password: "",
+      passwordConfirmation: "",
+      isLoading: false,
+    };
   }
-
-  /*state reset ref https://stackoverflow.com/a/43947937/14476262 */
-  getInitialState = () => ({
-    name: "Bartosz",
-    surname: "Jakubski",
-    email: "mailito@wp.pl",
-    password: "123456",
-    passwordConfirmation: "123456",
-    isLoading: false,
-  });
-
-  resetState = () => {
-    this.setState(this.getInitialState());
-  };
 
   updateInputVal = (val, prop) => {
     const state = this.state;
@@ -40,7 +33,7 @@ export default class Register extends Component {
     this.setState(state);
   };
 
-  registerNewUser = () => {
+  registerUser = () => {
     if (this.state.email === "" && this.state.password === "") {
       alert("Wprowadź wszystkie dane!");
     } else if (this.state.email === "" || this.state.password === "") {
@@ -56,10 +49,16 @@ export default class Register extends Component {
       registerUserWithEmail(
         this.state.email,
         this.state.password,
-        this.state.name,
-        this.state.surname
+        this.state.displayName
       );
-      this.resetState(this.getInitialState());
+      this.setState({
+        isLoading: false,
+        displayName: "",
+        email: "",
+        password: "",
+        passwordConfirmation: "",
+      });
+      //this.loginRedirect();
     }
   };
 
@@ -92,7 +91,7 @@ export default class Register extends Component {
               placeholder="Imię i nazwisko..."
               autoFocus={true}
               autoCapitalize="words"
-              value={this.state.name + " " + this.state.surname}
+              value={this.state.displayName}
               right={<TextInput.Icon name="account" disabled={true} />}
               onChangeText={(val) => this.updateInputVal(val, "displayName")}
             />
@@ -119,9 +118,7 @@ export default class Register extends Component {
             <TextInput
               style={{ marginTop: 10 }}
               placeholder="Powtórz hasło..."
-              autoCapitalize="none"
-              autoCorrect={false}
-              value={this.state.passwordConfirmation}
+              value={this.state.passwordConfrimation}
               right={<TextInput.Icon name="key-change" disabled={true} />}
               onChangeText={(val) =>
                 this.updateInputVal(val, "passwordConfirmation")
@@ -130,7 +127,7 @@ export default class Register extends Component {
             />
             <ContainedButton
               text={"Zarejestruj"}
-              function={this.registerNewUser.bind()}
+              function={this.registerUser.bind()}
             />
             <View style={{ justifyContent: "flex-end" }}>
               <TextButton

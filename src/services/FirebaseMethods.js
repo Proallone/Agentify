@@ -1,6 +1,5 @@
 import firebase from "../database/Firebase";
 import { clientConverter } from "../models/Client";
-import { User, userConverter } from "../models/User";
 
 export const firebaseSignOut = () => {
   firebase
@@ -25,25 +24,19 @@ export const firebaseSignIn = (email, password) => {
     });
 };
 
-export const getUserClients = async () => {
-  const clients = [];
-  const colRef = firebase
+export const firebaseGetDocs = async () => {
+  firebase
     .firestore()
-    .collection("users")
-    .doc(firebase.auth().currentUser.uid)
-    .collection("clients");
-
-  await colRef
+    .collection("clients_" + firebase.auth().currentUser.uid)
     .withConverter(clientConverter)
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         var client = doc.data();
         client.id = doc.id;
-        clients.push(client);
+        console.log(client);
       });
     });
-  return clients;
 };
 
 export const sendResetPasswordEmail = (email) => {
@@ -58,42 +51,19 @@ export const sendResetPasswordEmail = (email) => {
     });
 };
 
-export const registerUserWithEmail = (email, password, name, surname) => {
-  /* Właściwa rejestracja */
+export const registerUserWithEmail = (email, password, username) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((res) => {
-      res.user
-        .updateProfile({
-          displayName: name + " " + surname,
-          photoURL:
-            "https://firebasestorage.googleapis.com/v0/b/asystentagenta-a0d7b.appspot.com/o/default%2Fdefault_profile_image.png?alt=media&token=d4d28168-bc43-4a26-99a7-1d8f629d6fe9",
-        })
-        .then(() => {
-          /* Uzupełnienie informacji o userze w firebase*/
-          const colRef = firebase
-            .firestore()
-            .collection("users")
-            .doc(res.user.uid);
-
-          colRef
-            .withConverter(userConverter)
-            .set(
-              new User(
-                name,
-                surname,
-                email,
-                null,
-                firebase.firestore.FieldValue.serverTimestamp(),
-                res.user.uid
-              )
-            );
-          console.log(`User ${res.user.uid} registered succesfully`);
-        });
+      res.user.updateProfile({
+        displayName: username,
+        photoURL: "https://firebasestorage.googleapis.com/v0/b/asystentagenta-a0d7b.appspot.com/o/default%2Fdefault_profile_image.png?alt=media&token=d4d28168-bc43-4a26-99a7-1d8f629d6fe9",
+      });
+      console.log(`User ${res.user.uid} registered succesfully`);
     })
     .catch((error) => {
-      console.log({ errorMessage: error.message });
       alert(error.message);
+      console.log({ errorMessage: error.message });
     });
 };

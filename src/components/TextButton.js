@@ -6,7 +6,7 @@ const TextButton = (props) => {
   return (
     <Button
       style={styles.customButton}
-      contentStyle={{ height: styles.customButton.height }}
+      contentStyle={{ height: styles.customButton.height}}
       mode={"text"}
       onPress={() => props.function()}
     >

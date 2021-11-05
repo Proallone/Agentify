@@ -5,24 +5,17 @@ import React from "react";
 
 import { openImagePickerAsync } from "../utils/ImagePicker";
 import firebase from "../database/Firebase";
+import {firebaseGetDocs} from "../services/FirebaseMethods";
 
 export default class ProfileTab extends React.Component {
   constructor() {
     super();
     this.state = {
-      isLoading: false,
       userName: firebase.auth().currentUser.displayName,
       uid: firebase.auth().currentUser.uid,
       profileImageUrl: firebase.auth().currentUser.photoURL,
     };
   }
-
-/*   loadingComplete = () => {
-    if (this.state.profileImageUrl === undefined){
-      this.setState({isLoading:true})
-    }
-    this.setState({isLoading:false})
-  } */
 
   changeProfileImage = () => {
     openImagePickerAsync().then(() =>
@@ -33,9 +26,6 @@ export default class ProfileTab extends React.Component {
   };
 
   render() {
-    if (this.state.isLoading) {
-      return <LoadingIndicator />;
-    }
     return (
       <View style={styles.profileTab}>
         <View style={styles.avatarOutline}>
@@ -58,8 +48,7 @@ export default class ProfileTab extends React.Component {
             color={colors.primary}
             style={{
               justifyContent: "space-around",
-            }}
-           /*  onPress={() => this.settingsRedirect()} */
+            }} onPress={()=>firebaseGetDocs()}
           />
         </View>
       </View>

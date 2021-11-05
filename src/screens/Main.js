@@ -12,6 +12,7 @@ export default class Main extends Component {
       // DO POPRAWKIIIIIIIIIIIIIII STYLEE
       <View style={styles.mainContainer}>
         <View style={{ flex: 1, flexDirection: "row" }}>
+
           <ProfileTab />
         </View>
         <View style={styles.buttonsContainer}>
@@ -66,19 +67,6 @@ export default class Main extends Component {
             onPress={() => firebaseSignOut()}
           >
             Wyloguj
-          </Button>
-          <Button
-            style={styles.buttonStyle}
-            contentStyle={{
-              width: "100%",
-              height: "100%",
-              justifyContent: "center",
-            }}
-            icon={"logout"}
-            mode="outlined"
-            onPress={() => this.props.navigation.navigate("Settings")}
-          >
-            Ustawienia
           </Button>
         </View>
       </View>
