@@ -3,8 +3,8 @@
 */
 
 const colors = {
-    primary: "#f43737",
-    black: "#000",
-    white: "#fff",
-} 
+  primary: "#f43737",
+  black: "#000",
+  white: "#fff",
+};
 export default colors;

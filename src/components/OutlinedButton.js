@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
     width: "40%",
     height: 80,
     justifyContent: "center",
-    marginBottom: 20
+    marginBottom: 20,
   },
 });
