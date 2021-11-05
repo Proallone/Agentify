@@ -1,5 +1,6 @@
 import firebase from "../database/Firebase";
 import { clientConverter } from "../models/Client";
+import { User, userConverter } from "../models/User";
 
 export const firebaseSignOut = () => {
   firebase
@@ -57,35 +58,42 @@ export const sendResetPasswordEmail = (email) => {
     });
 };
 
-export const registerUserWithEmail = (email, password, username) => {
+export const registerUserWithEmail = (email, password, name, surname) => {
+  /* Właściwa rejestracja */
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((res) => {
-      res.user.updateProfile({
-        displayName: username,
-        photoURL:
-          "https://firebasestorage.googleapis.com/v0/b/asystentagenta-a0d7b.appspot.com/o/default%2Fdefault_profile_image.png?alt=media&token=d4d28168-bc43-4a26-99a7-1d8f629d6fe9",
-      });
-       const colRef = firebase
-        .firestore()
-        .collection("users")
-        .doc(res.user.uid)
+      res.user
+        .updateProfile({
+          displayName: name + " " + surname,
+          photoURL:
+            "https://firebasestorage.googleapis.com/v0/b/asystentagenta-a0d7b.appspot.com/o/default%2Fdefault_profile_image.png?alt=media&token=d4d28168-bc43-4a26-99a7-1d8f629d6fe9",
+        })
+        .then(() => {
+          /* Uzupełnienie informacji o userze w firebase*/
+          const colRef = firebase
+            .firestore()
+            .collection("users")
+            .doc(res.user.uid);
 
-      /* ref https://stackoverflow.com/a/39627573 */
-      var nameArray = username.split(/(\s+)/).filter( function(e) { return e.trim().length > 0; } );
-      console.log(nameArray);
-
-       colRef.set({
-        name: nameArray[0],
-        surname: nameArray[1],
-        age: null,
-      })  
-
-      console.log(`User ${res.user.uid} registered succesfully`);
+          colRef
+            .withConverter(userConverter)
+            .set(
+              new User(
+                name,
+                surname,
+                email,
+                null,
+                firebase.firestore.FieldValue.serverTimestamp(),
+                res.user.uid
+              )
+            );
+          console.log(`User ${res.user.uid} registered succesfully`);
+        });
     })
     .catch((error) => {
-      alert(error.message);
       console.log({ errorMessage: error.message });
+      alert(error.message);
     });
 };

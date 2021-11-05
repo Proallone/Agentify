@@ -96,9 +96,9 @@ export default class AddClient extends Component {
   };
 
   render() {
-    if (this.state.isLoading) {
+   /*  if (this.state.isLoading) {
       return <LoadingIndicator />;
-    }
+    } */
     return (
       <KeyboardAwareScrollView style={styles.mainContainer}>
         <View style={styles.inputContainer}>

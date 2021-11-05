@@ -1,18 +1,18 @@
 /* Ref https://firebase.google.com/docs/firestore/manage-data/add-data#web-version-8_4 */
 
 export class User {
-  constructor(name, surname, email, phone_number, timestamp) {
+  constructor(name, surname, email, phone_number = null, timestamp, id) {
     this.name = name;
     this.surname = surname;
     this.email = email;
     this.phone_number = phone_number;
     this.timestamp = timestamp;
-    this.id = 0; //default, id is generated on firebase server
+    this.id = id; 
   }
 }
 
 // Firestore data converter
-export var usertConverter = {
+export var userConverter = {
   toFirestore: function (user) {
     return {
       name: user.name,

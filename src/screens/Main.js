@@ -67,6 +67,19 @@ export default class Main extends Component {
           >
             Wyloguj
           </Button>
+          <Button
+            style={styles.buttonStyle}
+            contentStyle={{
+              width: "100%",
+              height: "100%",
+              justifyContent: "center",
+            }}
+            icon={"logout"}
+            mode="outlined"
+            onPress={() => this.props.navigation.navigate("Settings")}
+          >
+            Ustawienia
+          </Button>
         </View>
       </View>
     );

@@ -59,7 +59,7 @@ export default class ProfileTab extends React.Component {
             style={{
               justifyContent: "space-around",
             }}
-            //onPress={() => firebaseGetDocs()}
+           /*  onPress={() => this.settingsRedirect()} */
           />
         </View>
       </View>

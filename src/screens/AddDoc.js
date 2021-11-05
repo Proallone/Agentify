@@ -12,19 +12,6 @@ export default class AddDoc extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {/*   {
-          //this.state.clients.map((item,index)=> (
-          <List.Section>
-
-              <List.Item
-                title={item.name}
-                key={index}
-                onPress={() => console.log(`Wybrano ${index}`)}
-              />
-  
-          </List.Section>
-          ))
-        } */}
         <Button
           icon={"text-box-search-outline"}
           mode="outlined"

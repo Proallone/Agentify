@@ -17,14 +17,22 @@ import { style } from "../assets/styles/Index";
 export default class Register extends Component {
   constructor() {
     super();
-    this.state = {
-      displayName: "",
-      email: "",
-      password: "",
-      passwordConfirmation: "",
-      isLoading: false,
-    };
+    this.state = this.getInitialState();
   }
+
+  /*state reset ref https://stackoverflow.com/a/43947937/14476262 */
+  getInitialState = () => ({
+    name: "Bartosz",
+    surname: "Jakubski",
+    email: "mailito@wp.pl",
+    password: "123456",
+    passwordConfirmation: "123456",
+    isLoading: false,
+  });
+
+  resetState = () => {
+    this.setState(this.getInitialState());
+  };
 
   updateInputVal = (val, prop) => {
     const state = this.state;
@@ -32,7 +40,7 @@ export default class Register extends Component {
     this.setState(state);
   };
 
-  registerUser = () => {
+  registerNewUser = () => {
     if (this.state.email === "" && this.state.password === "") {
       alert("Wprowadź wszystkie dane!");
     } else if (this.state.email === "" || this.state.password === "") {
@@ -48,15 +56,10 @@ export default class Register extends Component {
       registerUserWithEmail(
         this.state.email,
         this.state.password,
-        this.state.displayName
+        this.state.name,
+        this.state.surname
       );
-      this.setState({
-        isLoading: false,
-        displayName: "",
-        email: "",
-        password: "",
-        passwordConfirmation: "",
-      });
+      this.resetState(this.getInitialState());
     }
   };
 
@@ -89,7 +92,7 @@ export default class Register extends Component {
               placeholder="Imię i nazwisko..."
               autoFocus={true}
               autoCapitalize="words"
-              value={this.state.displayName}
+              value={this.state.name + " " + this.state.surname}
               right={<TextInput.Icon name="account" disabled={true} />}
               onChangeText={(val) => this.updateInputVal(val, "displayName")}
             />
@@ -127,7 +130,7 @@ export default class Register extends Component {
             />
             <ContainedButton
               text={"Zarejestruj"}
-              function={this.registerUser.bind()}
+              function={this.registerNewUser.bind()}
             />
             <View style={{ justifyContent: "flex-end" }}>
               <TextButton
