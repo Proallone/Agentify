@@ -8,6 +8,7 @@ import ContainedButton from "../components/ContainedButton";
 import firebase from "../database/Firebase";
 import colors from "../assets/colors/Colors";
 import { Client, clientConverter } from "../models/Client";
+import { addClientToFirestore } from "../services/FirebaseMethods";
 import {
   peselValitadion,
   postalValidation,
@@ -56,36 +57,19 @@ export default class AddClient extends Component {
     } else if (postalValidation(this.state.post_code) == false) {
       alert("Wprowadź prawidłowy kod pocztowy!");
     } else {
-      const colRef = firebase
-        .firestore()
-        .collection("users")
-        .doc(firebase.auth().currentUser.uid)
-        .collection("clients");
-
-      colRef
-        .withConverter(clientConverter)
-        .add(
-          new Client(
-            this.state.name,
-            this.state.surname,
-            this.state.PESEL,
-            this.state.email,
-            this.state.phone_number,
-            this.state.post_code,
-            this.state.city,
-            this.state.address,
-            firebase.firestore.FieldValue.serverTimestamp()
-          )
-        )
-        .then(
-          (docRef) =>
-            docRef
-              .update({ id: docRef.id })
-              .then(console.log("Added client with ID:", docRef.id)),
-          alert(`Dodano klienta ${this.state.name} ${this.state.surname}!`),
-          (this.state = this.resetState(this.getInitialState()))
-        )
-        .catch((error) => console.error("Error adding client!", error));
+      const newClient = new Client(
+        this.state.name,
+        this.state.surname,
+        this.state.PESEL,
+        this.state.email,
+        this.state.phone_number,
+        this.state.post_code,
+        this.state.city,
+        this.state.address,
+        firebase.firestore.FieldValue.serverTimestamp()
+      );
+      addClientToFirestore(newClient);
+      this.state = this.resetState(this.getInitialState());
     }
   };
 
@@ -96,7 +80,7 @@ export default class AddClient extends Component {
   };
 
   render() {
-   /*  if (this.state.isLoading) {
+    /*  if (this.state.isLoading) {
       return <LoadingIndicator />;
     } */
     return (

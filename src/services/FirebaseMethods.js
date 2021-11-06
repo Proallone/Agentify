@@ -97,3 +97,23 @@ export const registerUserWithEmail = (email, password, name, surname) => {
       alert(error.message);
     });
 };
+
+export const addClientToFirestore = (client) => {
+  const colRef = firebase
+    .firestore()
+    .collection("users")
+    .doc(firebase.auth().currentUser.uid)
+    .collection("clients");
+
+  colRef
+    .withConverter(clientConverter)
+    .add(client)
+    .then(
+      (docRef) =>
+        docRef
+          .update({ id: docRef.id })
+          .then(console.log("Added client with ID:", docRef.id)),
+      alert(`Dodano klienta ${client.name} ${client.surname}!`),
+    )
+    .catch((error) => console.error("Error adding client!", error));
+};
