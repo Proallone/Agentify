@@ -12,7 +12,7 @@ export class User {
 }
 
 // Firestore data converter
-export var userConverter = {
+export let userConverter = {
   toFirestore: function (user) {
     return {
       name: user.name,

@@ -27,7 +27,7 @@ export class Client {
 }
 
 // Firestore data converter
-export var clientConverter = {
+export let clientConverter = {
   toFirestore: function (client) {
     return {
       name: client.name,

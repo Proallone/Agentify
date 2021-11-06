@@ -38,7 +38,7 @@ export const getUserClients = async () => {
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        var client = doc.data();
+        let client = doc.data();
         client.id = doc.id;
         clients.push(client);
       });

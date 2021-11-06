@@ -1,16 +1,16 @@
 export const peselValitadion = (pesel) => {
   /* function ref https://blog.aleksander.kaweczynski.pl/walidacja-numerow-pesel-nip-regon-w-javascript-i-php/ */
-  var reg = /^[0-9]{11}$/;
+  let reg = /^[0-9]{11}$/;
   if (reg.test(pesel) == false) return false;
   else {
-    var digits = ("" + pesel).split("");
+    let digits = ("" + pesel).split("");
     if (
       parseInt(pesel.substring(4, 6)) > 31 ||
       parseInt(pesel.substring(2, 4)) > 12
     )
       return false;
 
-    var checksum =
+    let checksum =
       (1 * parseInt(digits[0]) +
         3 * parseInt(digits[1]) +
         7 * parseInt(digits[2]) +

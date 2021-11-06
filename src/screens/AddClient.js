@@ -21,14 +21,14 @@ export default class AddClient extends Component {
   }
   /*state reset ref https://stackoverflow.com/a/43947937/14476262 */
   getInitialState = () => ({
-    name: "Vaerel",
-    surname: "ASas",
-    PESEL: "98062010110",
-    email: "23@p.pl",
+    name: "Thomas",
+    surname: "Clown",
+    PESEL: "68072204874",
+    email: "thomas.clown@mail.com",
     phone_number: "123456789",
     post_code: "47-100",
-    city: "sda",
-    address: "hwllo",
+    city: "Minnesota",
+    address: "Canterbury St. 19c/20",
   });
 
   resetState = () => {
