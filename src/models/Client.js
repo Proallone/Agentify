@@ -11,7 +11,6 @@ export class Client {
     city,
     address,
     timestamp,
-    id,
   ) {
     this.name = name;
     this.surname = surname;

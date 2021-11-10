@@ -7,7 +7,7 @@ import { LoadingIndicator } from "../components/Index";
 import ContainedButton from "../components/ContainedButton";
 import firebase from "../database/Firebase";
 import colors from "../assets/colors/Colors";
-import { Client, clientConverter } from "../models/Client";
+import { Client } from "../models/Client";
 import { addClientToFirestore } from "../services/FirebaseMethods";
 import {
   peselValitadion,
@@ -36,7 +36,7 @@ export default class AddClient extends Component {
     this.setState(this.getInitialState());
   };
 
-  saveNewClient = async () => {
+  saveNewClient = () => {
     if (
       this.state.name === "" ||
       this.state.surname === "" ||

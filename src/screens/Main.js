@@ -74,7 +74,7 @@ export default class Main extends Component {
               height: "100%",
               justifyContent: "center",
             }}
-            icon={"logout"}
+            icon={"cog"}
             mode="outlined"
             onPress={() => this.props.navigation.navigate("Settings")}
           >
