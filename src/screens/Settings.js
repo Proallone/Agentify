@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, StyleSheet, StatusBar } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import colors from "../assets/colors/Colors";
+import { getUserData } from "../services/FirebaseMethods";
 
 import {
   OutlinedButton,
@@ -14,7 +15,18 @@ import {
 export default class Settings extends Component {
   constructor() {
     super();
+    this.state = {
+      userData: {name: "",surname: "", phone_number: "",email: "" },
+    };
+    this.fillUserData();
   }
+
+  fillUserData = async () => {
+    this.setState({
+      userData: await getUserData(),
+    });
+    console.log(this.state.userData);
+  };
 
   render() {
     return (
@@ -23,7 +35,7 @@ export default class Settings extends Component {
         <TextInput
           label="Imię"
           icon="at"
-          value="IMIE PLACEHOLDER"
+          value={this.state.userData.name}
           //right={<TextInput.Icon name="at" disabled={true} />}
           disabled={true}
           /*  onChangeText={(val) => this.updateInputVal(val, "email")} */
@@ -32,7 +44,7 @@ export default class Settings extends Component {
         <TextInput
           style={{ marginTop: 15 }}
           label="Nazwisko"
-          value="NAZWISKO PLACEHOLDER"
+          value={this.state.userData.surname}
           //right={<TextInput.Icon name="key" disabled={true} />}
           /* onChangeText={(val) => this.updateInputVal(val, "password")} */
           disabled={true}
@@ -41,7 +53,7 @@ export default class Settings extends Component {
         <TextInput
           label="Adres email"
           style={{ marginTop: 15 }}
-          value="EMAIL PLACEHOLDER"
+          value={this.state.userData.email}
           //right={<TextInput.Icon name="key" disabled={true} />}
           /* onChangeText={(val) => this.updateInputVal(val, "password")} */
           disabled={true}
@@ -49,12 +61,12 @@ export default class Settings extends Component {
         <TextInput
           label="Numer telefonu"
           style={{ marginTop: 15, marginBottom:5 }}
-          value="NUMER TELEFONU PLACEHOLDER"
+          value={this.state.userData.phone_number}
           //right={<TextInput.Icon name="key" disabled={true} />}
           /* onChangeText={(val) => this.updateInputVal(val, "password")} */
           disabled={true}
         />
-        <ContainedButton text={"Zmień dane"} function={console.log.bind("Edit")}/>
+        <ContainedButton text={"Zmień dane"} function={getUserData.bind()}/>
       </View>
     );
   }

@@ -25,6 +25,30 @@ export const firebaseSignIn = (email, password) => {
     });
 };
 
+export const getUserData = async () => {
+  let userData = null;
+  const colRef = firebase
+    .firestore()
+    .collection("users")
+    .doc(firebase.auth().currentUser.uid);
+
+  await colRef
+    .withConverter(userConverter)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        userData = doc.data();
+        userData.id = doc.id;
+      } else {
+        console.log("Nie udało się pobrać danych!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  return userData;
+};
+
 export const getUserClients = async () => {
   const clients = [];
   const colRef = firebase
@@ -113,7 +137,7 @@ export const addClientToFirestore = (client) => {
         docRef
           .update({ id: docRef.id })
           .then(console.log("Added client with ID:", docRef.id)),
-      alert(`Dodano klienta ${client.name} ${client.surname}!`),
+      alert(`Dodano klienta ${client.name} ${client.surname}!`)
     )
     .catch((error) => console.error("Error adding client!", error));
 };
