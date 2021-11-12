@@ -9,14 +9,15 @@ import {
   ContainedButton,
   LoadingIndicator,
   TextButton,
-  ClickableAvatar
+  ClickableAvatar,
 } from "../components/Index";
 
 export default class Settings extends Component {
   constructor() {
     super();
     this.state = {
-      userData: {name: "",surname: "", phone_number: "",email: "" },
+      userData: { name: "", surname: "", phone_number: "", email: "" },
+      isLoading: true,
     };
     this.fillUserData();
   }
@@ -24,14 +25,17 @@ export default class Settings extends Component {
   fillUserData = async () => {
     this.setState({
       userData: await getUserData(),
+      isLoading: false,
     });
-    console.log(this.state.userData);
   };
 
   render() {
+    if (this.state.isLoading) {
+      return <LoadingIndicator />;
+    }
     return (
       <View style={style.container}>
-        <ClickableAvatar/>
+        <ClickableAvatar />
         <TextInput
           label="Imię"
           icon="at"
@@ -60,13 +64,13 @@ export default class Settings extends Component {
         />
         <TextInput
           label="Numer telefonu"
-          style={{ marginTop: 15, marginBottom:5 }}
+          style={{ marginTop: 15, marginBottom: 5 }}
           value={this.state.userData.phone_number}
           //right={<TextInput.Icon name="key" disabled={true} />}
           /* onChangeText={(val) => this.updateInputVal(val, "password")} */
           disabled={true}
         />
-        <ContainedButton text={"Zmień dane"} function={getUserData.bind()}/>
+        <ContainedButton text={"Zmień dane"} function={getUserData.bind()} />
       </View>
     );
   }
@@ -79,17 +83,7 @@ const style = StyleSheet.create({
     paddingRight: 15,
     paddingLeft: 15,
     backgroundColor: colors.white,
-    paddingTop: StatusBar.currentHeight,
+    //paddingTop: StatusBar.currentHeight,
     //justifyContent:"space-between"
-  },
-  containerTwoCol: {
-    flex: 1,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "flex-start", // if you want to fill rows left to right
-  },
-  item: {
-    width: "50%",
-    padding: 5, // is 50% of container width
   },
 });
