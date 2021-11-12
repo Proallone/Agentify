@@ -22,11 +22,10 @@ export default class Register extends Component {
 
   /*state reset ref https://stackoverflow.com/a/43947937/14476262 */
   getInitialState = () => ({
-    name: "Bartosz",
-    surname: "Jakubski",
-    email: "mailito@wp.pl",
-    password: "123456",
-    passwordConfirmation: "123456",
+    displayName: "",
+    email: "",
+    password: "",
+    passwordConfirmation: "",
     isLoading: false,
   });
 
@@ -41,9 +40,9 @@ export default class Register extends Component {
   };
 
   registerNewUser = () => {
-    if (this.state.email === "" && this.state.password === "") {
+    if (this.state.email === "" && this.state.password === "" && this.state.displayName === "") {
       alert("Wprowadź wszystkie dane!");
-    } else if (this.state.email === "" || this.state.password === "") {
+    } else if (this.state.email === "" || this.state.password === "" || this.state.displayName === "") {
       alert("Niepełne wszystkie dane!");
     } else if (emailValidation(this.state.email) == false) {
       alert("Wprowadź prawidłowy adres email!");
@@ -56,8 +55,7 @@ export default class Register extends Component {
       registerUserWithEmail(
         this.state.email,
         this.state.password,
-        this.state.name,
-        this.state.surname
+        this.state.displayName
       );
       this.resetState(this.getInitialState());
     }
@@ -88,11 +86,11 @@ export default class Register extends Component {
               />
             </View>
             <TextInput
-              style={style.inputStyle}
+              style={{ marginTop: 10 }}
               placeholder="Imię i nazwisko..."
               autoFocus={true}
               autoCapitalize="words"
-              value={this.state.name + " " + this.state.surname}
+              value={this.state.displayName}
               right={<TextInput.Icon name="account" disabled={true} />}
               onChangeText={(val) => this.updateInputVal(val, "displayName")}
             />

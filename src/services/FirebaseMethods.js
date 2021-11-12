@@ -82,7 +82,7 @@ export const sendResetPasswordEmail = (email) => {
     });
 };
 
-export const registerUserWithEmail = (email, password, name, surname) => {
+export const registerUserWithEmail = (email, password, displayName) => {
   /* Właściwa rejestracja */
   firebase
     .auth()
@@ -90,7 +90,7 @@ export const registerUserWithEmail = (email, password, name, surname) => {
     .then((res) => {
       res.user
         .updateProfile({
-          displayName: name + " " + surname,
+          displayName: displayName,
           photoURL:
             "https://firebasestorage.googleapis.com/v0/b/asystentagenta-a0d7b.appspot.com/o/default%2Fdefault_profile_image.png?alt=media&token=d4d28168-bc43-4a26-99a7-1d8f629d6fe9",
         })
@@ -101,14 +101,16 @@ export const registerUserWithEmail = (email, password, name, surname) => {
             .collection("users")
             .doc(res.user.uid);
 
+          let displayNameWords = displayName.split(" ")  //pomocniczy array wyrazów
+
           colRef
             .withConverter(userConverter)
             .set(
               new User(
-                name,
-                surname,
+                displayNameWords[0], //imię
+                displayNameWords[1], //nazwisko
                 email,
-                null,
+                null, //nr tel
                 firebase.firestore.FieldValue.serverTimestamp(),
                 res.user.uid
               )
