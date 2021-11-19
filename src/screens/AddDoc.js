@@ -17,7 +17,7 @@ export default class AddDoc extends Component {
           mode="outlined"
           onPress={() => addDocument()}
         >
-          Dodaj dokument
+          Wybierz dokument
         </Button>
       </View>
     );

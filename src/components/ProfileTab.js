@@ -9,6 +9,7 @@ import firebase from "../database/Firebase";
 export default class ProfileTab extends React.Component {
   constructor() {
     super();
+    //let loggedUser = firebase.auth().currentUser;
     this.state = {
       isLoading: false,
       userName: firebase.auth().currentUser.displayName,
